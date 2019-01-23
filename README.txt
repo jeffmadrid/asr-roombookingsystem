@@ -1,3 +1,6 @@
+S3697158
+
+
 Microsoft.VisualStudio.Web.CodeGeneration.Tools has been deprecated in favor of dotnet-aspnet-codegenerator
 https://github.com/aspnet/Tooling/issues/1075
 
