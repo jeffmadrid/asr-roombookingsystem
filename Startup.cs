@@ -60,9 +60,9 @@ namespace Asr
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            app.UseHttpsRedirection(); //this didn't exist in 2.0
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+            //app.UseCookiePolicy();
 
             app.UseAuthentication();
 
