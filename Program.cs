@@ -19,21 +19,21 @@ namespace Asr
         {
             var host = CreateWebHostBuilder(args).Build();
 
-            //using (var scope = host.Services.CreateScope())
-            //{
-            //    var services = scope.ServiceProvider;
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
 
-            //    try
-            //    {
-            //        services.GetRequiredService<ApplicationDbContext>().Database.Migrate();
-            //        SeedData.Initialise(services);
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        var logger = services.GetRequiredService<ILogger<Program>>();
-            //        logger.LogError(e, "An error occurred seeding the DB.");
-            //    }
-            //}
+                try
+                {
+                    services.GetRequiredService<ApplicationDbContext>().Database.Migrate();
+                    SeedData.Initialise(services);
+                }
+                catch (Exception e)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(e, "An error occurred seeding the DB.");
+                }
+            }
 
             host.Run();
         }
