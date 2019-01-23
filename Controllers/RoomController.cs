@@ -58,6 +58,7 @@ namespace Asr.Controllers
         {
             if (ModelState.IsValid)
             {
+                //if(_context.Room.Contains(room)) // check that room alread exited in database
                 _context.Add(room);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
