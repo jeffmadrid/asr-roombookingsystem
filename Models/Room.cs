@@ -6,7 +6,7 @@ namespace Asr.Models
 {
     public class Room
     {
-        [Required, RegularExpression(@"^[A-Z]*$")]
+        [Required]
         public string RoomID { get; set; }
 
         public virtual ICollection<Slot> Slots { get; set; }
