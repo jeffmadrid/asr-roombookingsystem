@@ -17,5 +17,8 @@
 
   <ItemGroup>
     <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
+    <Compile Remove="Migrations\20190123032020_Initial.cs" />
+    <Compile Remove="Migrations\20190123032020_Initial.Designer.cs" />
+    <Compile Remove="Migrations\ApplicationDbContextModelSnapshot.cs" />
   </ItemGroup>
 </Project>

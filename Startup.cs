@@ -14,6 +14,7 @@ using Asr.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Asr.Models;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace Asr
 {
@@ -33,6 +34,12 @@ namespace Asr
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+
+            //Added for external google log in
+            services.Configure<MvcOptions>(options => options.Filters.Add(new RequireHttpsAttribute()));
+
+
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseLazyLoadingProxies().UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -43,6 +50,22 @@ namespace Asr
                 options.Password.RequireDigit = options.Password.RequireNonAlphanumeric =
                     options.Password.RequireUppercase = options.Password.RequireLowercase = false;
             }).AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+
+            //Added for external google log in
+            //services.AddIdentity<AppUser, IdentityRole>(options =>
+            //{
+            //    options.Password.RequiredLength = 3;
+            //    options.Password.RequireDigit = options.Password.RequireNonAlphanumeric =
+            //        options.Password.RequireUppercase = options.Password.RequireLowercase = false;
+            //}).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            });
+
 
             //services.AddDefaultIdentity<IdentityUser>()
             //.AddDefaultUI(UIFramework.Bootstrap4)
@@ -66,11 +89,25 @@ namespace Asr
                 app.UseHsts();
             }
 
+
+
+
+
+            //Added for external google log in
+            app.UseRewriter(new RewriteOptions().AddRedirectToHttps());
+
+
+
+
+
+
+
             app.UseHttpsRedirection(); //this didn't exist in 2.0
             app.UseStaticFiles();
             //app.UseCookiePolicy();
 
             app.UseAuthentication();
+
 
             app.UseMvc(routes =>
             {
