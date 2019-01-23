@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+
 namespace Asr.Models
 {
-    public class AppUser
+    public class AppUser : IdentityUser
     {
-        public AppUser()
-        {
-        }
+        public string StaffID { get; set; }
+        public virtual Staff Staff { get; set; }
+
+        public string StudentID { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

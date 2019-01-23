@@ -2,10 +2,10 @@ Microsoft.VisualStudio.Web.CodeGeneration.Tools has been deprecated in favor of 
 https://github.com/aspnet/Tooling/issues/1075
 
 Scaffolding 
-dotnet aspnet-codegenerator controller -name StaffController -m Staff -dc AsrDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
-dotnet aspnet-codegenerator controller -name StudentController -m Student -dc AsrDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
-dotnet aspnet-codegenerator controller -name RoomController -m Room -dc AsrDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
-dotnet aspnet-codegenerator controller -name SlotController -m Slot -dc AsrDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+dotnet aspnet-codegenerator controller -name StaffController -m Staff -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+dotnet aspnet-codegenerator controller -name StudentController -m Student -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+dotnet aspnet-codegenerator controller -name RoomController -m Room -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+dotnet aspnet-codegenerator controller -name SlotController -m Slot -dc ApplicationDbContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
 
 
 Add -f to overwrite
