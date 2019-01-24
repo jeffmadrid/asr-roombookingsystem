@@ -9,10 +9,12 @@ namespace Asr.Models
         public string RoomID { get; set; }
         public virtual Room Room { get; set; }
 
-        [Required]      
+        [Required]  
+        [CheckDate(ErrorMessage ="You can create slot in the past")]
         public DateTime StartTime { get; set; }
 
         [Required]
+
         public string StaffID { get; set; }
         public virtual Staff Staff { get; set; }
 

@@ -63,6 +63,7 @@ namespace Asr.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("RoomID,StartTime,StaffID,StudentID")] Slot slot)
         {
+            
             if (ModelState.IsValid)
             {
                 _context.Add(slot);
