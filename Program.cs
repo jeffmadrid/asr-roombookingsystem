@@ -25,19 +25,13 @@ namespace Asr
 
                 try
                 {
-                    services.GetRequiredService<ApplicationDbContext>().Database.Migrate(); //TODO what does this do?
-                    //SeedData.Initialise(services); //This is seeding it with no roles
-                    SeedData.Initialize(services).Wait(); //This is seeding and adding roles for users
-
+                    services.GetRequiredService<ApplicationDbContext>().Database.Migrate();
+                    SeedData.Initialise(services);
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
-                    services.GetRequiredService<ILogger<Program>>()
-                        .LogError(ex, "An error occurred while seeding the database.");
-                    throw;
-
-                    //var logger = services.GetRequiredService<ILogger<Program>>();
-                    //logger.LogError(ex, "An error occurred seeding the DB.");
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(e, "An error occurred seeding the DB.");
                 }
             }
 

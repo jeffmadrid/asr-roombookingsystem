@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Asr.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,50 +9,6 @@ namespace Asr.Data
 {
     public static class SeedData
     {
-
-        public static async Task Initialize(IServiceProvider serviceProvider)
-        {
-            var roles = new[] { Constants.StaffRole, Constants.StudentRole };
-
-            using (var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>())
-            using (var userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>())
-            using (var context = new ApplicationDbContext(serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
-            {
-                foreach (var role in roles)
-                    if (!await roleManager.RoleExistsAsync(role))
-                        await roleManager.CreateAsync(new IdentityRole { Name = role });
-
-
-                await CreateUserAndEnsureUserHasRole(userManager, "e12345", "Matt", "e12345@rmit.edu.au");
-                await CreateUserAndEnsureUserHasRole(userManager, "e56789", "See", "e56789@rmit.edu.au");
-                await CreateUserAndEnsureUserHasRole(userManager, "s1234567", "Example", "s1234567@student.rmit.edu.au");
-                await CreateUserAndEnsureUserHasRole(userManager, "s4567890", "Sample", "s4567890@student.rmit.edu.au");
-                InitialiseAsrData(context, userManager);
-            }
-
-        }
-
-        private static async Task CreateUserAndEnsureUserHasRole(
-            UserManager<AppUser> userManager, string id, string name, string email)
-        {
-            var role = id.StartsWith('e') ? Constants.StaffRole : Constants.StudentRole;
-
-            //TODO What really is user manager? and what does having AppUser as generic do?
-            if (userManager.FindByIdAsync(id) == null)
-                await userManager.CreateAsync(new AppUser { Id = id, UserName = name, Email = email }, "abc123");
-            await EnsureUserHasRole(userManager, id, role);
-        }
-
-        private static async Task EnsureUserHasRole(
-            UserManager<AppUser> userManager, string id, string role)
-        {
-            var user = await userManager.FindByIdAsync(id);
-            if (user != null && await userManager.IsInRoleAsync(user, role))
-                await userManager.AddToRoleAsync(user, role);
-        }
-
-
-
 
         public static void Initialise(IServiceProvider serviceProvider)
         {
