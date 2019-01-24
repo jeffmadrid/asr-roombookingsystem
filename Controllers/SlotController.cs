@@ -76,14 +76,14 @@ namespace Asr.Controllers
         }
 
         // GET: Slot/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(string id,DateTime dateslot)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var slot = await _context.Slot.FindAsync(id);
+            var slot = await _context.Slot.FindAsync(id, dateslot);
             if (slot == null)
             {
                 return NotFound();
