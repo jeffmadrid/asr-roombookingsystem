@@ -9,7 +9,7 @@ namespace Asr.Models
         public string RoomID { get; set; }
         public virtual Room Room { get; set; }
 
-        [Required]
+        [Required]      
         public DateTime StartTime { get; set; }
 
         [Required]

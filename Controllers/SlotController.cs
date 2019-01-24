@@ -27,7 +27,7 @@ namespace Asr.Controllers
         }
 
         // GET: Slot/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(string id,DateTime date)
         {
             if (id == null)
             {
@@ -38,7 +38,7 @@ namespace Asr.Controllers
                 .Include(s => s.Room)
                 .Include(s => s.Staff)
                 .Include(s => s.Student)
-                .FirstOrDefaultAsync(m => m.RoomID == id);
+                .FirstOrDefaultAsync(m => m.RoomID == id && m.StartTime == date);
             if (slot == null)
             {
                 return NotFound();
@@ -76,14 +76,14 @@ namespace Asr.Controllers
         }
 
         // GET: Slot/Edit/5
-        public async Task<IActionResult> Edit(string id,DateTime dateslot)
+        public async Task<IActionResult> Edit(string id,DateTime date)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var slot = await _context.Slot.FindAsync(id, dateslot);
+            var slot = await _context.Slot.FindAsync(id, date);
             if (slot == null)
             {
                 return NotFound();
@@ -133,7 +133,7 @@ namespace Asr.Controllers
         }
 
         // GET: Slot/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string id,DateTime date)
         {
             if (id == null)
             {
@@ -144,7 +144,7 @@ namespace Asr.Controllers
                 .Include(s => s.Room)
                 .Include(s => s.Staff)
                 .Include(s => s.Student)
-                .FirstOrDefaultAsync(m => m.RoomID == id);
+                .FirstOrDefaultAsync(m => m.RoomID == id && m.StartTime == date);
             if (slot == null)
             {
                 return NotFound();
@@ -156,9 +156,9 @@ namespace Asr.Controllers
         // POST: Slot/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(string id,DateTime date)
         {
-            var slot = await _context.Slot.FindAsync(id);
+            var slot = await _context.Slot.FindAsync(id,date);
             _context.Slot.Remove(slot);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
