@@ -44,22 +44,26 @@ namespace Asr
                 options.UseLazyLoadingProxies().UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<AppUser>(options =>
-            {
-                options.Password.RequiredLength = 3;
-                options.Password.RequireDigit = options.Password.RequireNonAlphanumeric =
-                    options.Password.RequireUppercase = options.Password.RequireLowercase = false;
-            }).AddEntityFrameworkStores<ApplicationDbContext>();
-
-
-
-            //Added for external google log in
-            //services.AddIdentity<AppUser, IdentityRole>(options =>
+            //services.AddDefaultIdentity<AppUser>(options =>
             //{
             //    options.Password.RequiredLength = 3;
             //    options.Password.RequireDigit = options.Password.RequireNonAlphanumeric =
             //        options.Password.RequireUppercase = options.Password.RequireLowercase = false;
-            //}).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+            //}).AddEntityFrameworkStores<ApplicationDbContext>();
+
+            // https://stackoverflow.com/questions/52531131/asp-net-core-2-1-identity-role-based-authorization-access-denied
+            services.AddIdentity<AppUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 3;
+                options.Password.RequireDigit = options.Password.RequireNonAlphanumeric =
+                    options.Password.RequireUppercase = options.Password.RequireLowercase = false;
+            })
+                .AddRoleManager<RoleManager<IdentityRole>>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
             services.AddAuthentication().AddGoogle(googleOptions =>
             {
                 googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
