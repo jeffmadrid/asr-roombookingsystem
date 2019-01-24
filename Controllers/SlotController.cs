@@ -27,7 +27,7 @@ namespace Asr.Controllers
         }
 
         // GET: Slot/Details/5
-        public async Task<IActionResult> Details(string id,DateTime date)
+        public async Task<IActionResult> Details(string id, DateTime dateTime)
         {
             if (id == null)
             {
@@ -38,7 +38,7 @@ namespace Asr.Controllers
                 .Include(s => s.Room)
                 .Include(s => s.Staff)
                 .Include(s => s.Student)
-                .FirstOrDefaultAsync(m => m.RoomID == id && m.StartTime == date);
+                .FirstOrDefaultAsync(m => m.RoomID == id && m.StartTime == dateTime);
             if (slot == null)
             {
                 return NotFound();
@@ -77,14 +77,14 @@ namespace Asr.Controllers
         }
 
         // GET: Slot/Edit/5
-        public async Task<IActionResult> Edit(string id,DateTime date)
+        public async Task<IActionResult> Edit(string id, DateTime dateTime)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var slot = await _context.Slot.FindAsync(id, date);
+            var slot = await _context.Slot.FindAsync(id, dateTime);
             if (slot == null)
             {
                 return NotFound();
@@ -134,7 +134,7 @@ namespace Asr.Controllers
         }
 
         // GET: Slot/Delete/5
-        public async Task<IActionResult> Delete(string id,DateTime date)
+        public async Task<IActionResult> Delete(string id, DateTime dateTime)
         {
             if (id == null)
             {
@@ -145,7 +145,7 @@ namespace Asr.Controllers
                 .Include(s => s.Room)
                 .Include(s => s.Staff)
                 .Include(s => s.Student)
-                .FirstOrDefaultAsync(m => m.RoomID == id && m.StartTime == date);
+                .FirstOrDefaultAsync(m => m.RoomID == id && m.StartTime == dateTime);
             if (slot == null)
             {
                 return NotFound();
@@ -157,9 +157,9 @@ namespace Asr.Controllers
         // POST: Slot/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id,DateTime date)
+        public async Task<IActionResult> DeleteConfirmed(string id, DateTime dateTime)
         {
-            var slot = await _context.Slot.FindAsync(id,date);
+            var slot = await _context.Slot.FindAsync(id, dateTime);
             _context.Slot.Remove(slot);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
