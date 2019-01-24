@@ -58,6 +58,7 @@ namespace Asr.Controllers
         {
             if (ModelState.IsValid)
             {
+                //if(_context.Room.Contains(room)) // check that room alread exited in database
                 _context.Add(room);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,12 +87,13 @@ namespace Asr.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("RoomID")] Room room)
+        public async Task<IActionResult> Edit(/*string id,*/ [Bind("RoomID")] Room room)
         {
-            if (id != room.RoomID)
-            {
-                return NotFound();
-            }
+            //if (id != room.RoomID)
+            //{
+            //    return NotFound();
+            //}
+          
 
             if (ModelState.IsValid)
             {
