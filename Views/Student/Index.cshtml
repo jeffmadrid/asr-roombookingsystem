@@ -1,39 +1,43 @@
-@model IEnumerable<Asr.Models.Student>
+@model IEnumerable<Asr.Models.Slot>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Available Slots";
 }
 
-<h1>Index</h1>
+<h1>Available Slots</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.RoomID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                @Html.DisplayNameFor(model => model.StartTime)
             </th>
-            <th></th>
+            <th> @Html.DisplayNameFor(model => model.StaffID) </th>
+            <th> @Html.DisplayNameFor(model => model.StudentID) </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.RoomID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Email)
+                @Html.DisplayFor(modelItem => item.StartTime)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.StudentID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.StudentID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StudentID">Delete</a>
+                @Html.DisplayFor(modelItem => item.StaffID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentID)
+            </td>
+            <td>
+                <a asp-action="BookSlot" asp-route-id="@item.RoomID" asp-route-datetime="@item.StartTime" >Book a slot</a> |
+                <a asp-action="CancelSlot" asp-route-id="@item.RoomID" asp-route-datetime="@item.StartTime">Cancel a Booking</a> |
             </td>
         </tr>
 }
