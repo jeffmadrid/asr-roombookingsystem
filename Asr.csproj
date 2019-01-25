@@ -20,5 +20,9 @@
     <Compile Remove="Migrations\20190123032020_Initial.cs" />
     <Compile Remove="Migrations\20190123032020_Initial.Designer.cs" />
     <Compile Remove="Migrations\ApplicationDbContextModelSnapshot.cs" />
+    <Compile Remove="Areas\Identity\Data\ApplicationDbContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Data\" />
   </ItemGroup>
 </Project>
