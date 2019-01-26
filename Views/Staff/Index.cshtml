@@ -9,6 +9,11 @@
 <p>
     <a asp-action="Create">Create New Slot</a>
 </p>
+@* This link sends the email address of the current user using url/get method to the controller*@
+<p>
+    <a asp-action="Index" asp-route-staffid="@User.Identity.Name.Substring(0,6)">Show only my slot</a>
+</p>
+
 <table class="table">
     <thead>
         <tr>

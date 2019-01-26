@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Asr.Data;
 using Asr.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Asr.Controllers
 {
+    [Authorize(Roles = Constants.StaffRole)]
     public class StaffController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,9 +23,16 @@ namespace Asr.Controllers
         }
 
         // GET: Slot
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string staffID)
         {
             var applicationDbContext = _context.Slot.Include(s => s.Room).Include(s => s.Staff).Include(s => s.Student);
+
+            if (!string.IsNullOrEmpty(staffID))
+            {
+                var staffSlotsQuery = applicationDbContext.Where(x => x.StaffID == staffID);
+                return View(await staffSlotsQuery.ToListAsync());
+            }
+
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -46,11 +55,11 @@ namespace Asr.Controllers
         }
 
         // GET: Slot/Create
-        [Authorize(Roles = Constants.StaffRole)]
         public IActionResult Create()
         {
+            var loggedInUser = User.Identity.Name;
             ViewData["RoomID"] = new SelectList(_context.Room, "RoomID", "RoomID");
-            ViewData["StaffID"] = new SelectList(_context.Staff, "StaffID", "StaffID");
+            ViewData["StaffID"] = new SelectList(_context.Staff.Where(x => x.Email == loggedInUser), "StaffID", "StaffID");
             //ViewData["StudentID"] = new SelectList(_context.Student, "StudentID", "StudentID");
             return View();
         }
@@ -60,7 +69,6 @@ namespace Asr.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = Constants.StaffRole)]
         public async Task<IActionResult> Create([Bind("RoomID,StartTime,StaffID,StudentID")] Slot slot)
         {
 
@@ -128,7 +136,6 @@ namespace Asr.Controllers
         //}
 
         // GET: Slot/Delete/5
-        [Authorize(Roles = Constants.StaffRole)]
         public async Task<IActionResult> Delete(string id, DateTime dateTime)
         {
             if (id == null)
@@ -152,7 +159,6 @@ namespace Asr.Controllers
         // POST: Slot/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = Constants.StaffRole)]
         public async Task<IActionResult> DeleteConfirmed(string id, DateTime dateTime)
         {
             var slot = await _context.Slot.FindAsync(id, dateTime);
