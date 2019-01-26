@@ -46,6 +46,7 @@ namespace Asr.Controllers
         }
 
         // GET: Slot/Create
+        [Authorize(Roles = Constants.StaffRole)]
         public IActionResult Create()
         {
             ViewData["RoomID"] = new SelectList(_context.Room, "RoomID", "RoomID");
@@ -59,6 +60,7 @@ namespace Asr.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = Constants.StaffRole)]
         public async Task<IActionResult> Create([Bind("RoomID,StartTime,StaffID,StudentID")] Slot slot)
         {
 
@@ -126,6 +128,7 @@ namespace Asr.Controllers
         //}
 
         // GET: Slot/Delete/5
+        [Authorize(Roles = Constants.StaffRole)]
         public async Task<IActionResult> Delete(string id, DateTime dateTime)
         {
             if (id == null)
@@ -149,6 +152,7 @@ namespace Asr.Controllers
         // POST: Slot/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = Constants.StaffRole)]
         public async Task<IActionResult> DeleteConfirmed(string id, DateTime dateTime)
         {
             var slot = await _context.Slot.FindAsync(id, dateTime);
