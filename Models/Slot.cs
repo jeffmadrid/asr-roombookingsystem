@@ -10,7 +10,7 @@ namespace Asr.Models
         public virtual Room Room { get; set; }
 
         [Required]  
-        [CheckDate(ErrorMessage ="You can create slot in the past")]
+        [CheckDate(ErrorMessage ="You cannot create slot in the past")]
         public DateTime StartTime { get; set; }
 
         [Required]
