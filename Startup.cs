@@ -94,17 +94,11 @@ namespace Asr
             }
 
 
-
-
+            //Uncomment this for handling errors or app release stage
+            //app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
 
             //Added for external google log in
             app.UseRewriter(new RewriteOptions().AddRedirectToHttps());
-
-
-
-
-
-
 
             app.UseHttpsRedirection(); //this didn't exist in 2.0
             app.UseStaticFiles();
@@ -112,13 +106,9 @@ namespace Asr
 
             app.UseAuthentication();
 
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
+            app.UseMvc(routes => routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+                    template: "{controller=Home}/{action=Index}/{id?}"));
         }
     }
 }
