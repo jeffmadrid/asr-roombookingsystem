@@ -1,3 +1,6 @@
+Link for ER Diagram:
+https://www.lucidchart.com/invitations/accept/570f4773-2886-4f55-b17c-48768d7dfef5
+
 S3697158
 
 
