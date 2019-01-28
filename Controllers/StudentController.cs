@@ -27,7 +27,7 @@ namespace Asr.Controllers
             if (!string.IsNullOrEmpty(staffId))
                 slot = _context.Slot.Where(x => x.StaffID == staffId && x.StudentID ==null);
             if (datestart.ToString() != "1/1/0001 12:00:00 AM")
-                slot = _context.Slot.Where(x => x.StaffID == staffId && x.StartTime == datestart && x.StudentID == null);
+                slot = _context.Slot.Where(x => x.StaffID == staffId && x.StartTime.Date == datestart && x.StudentID == null);
 
             return View(new SlotStaffViewModel
             {
@@ -42,11 +42,12 @@ namespace Asr.Controllers
         // GET: Slot/Edit/5
         public async Task<IActionResult> BookSlot(string id, DateTime dateTime)
         {
+
             if (id == null)
             {
                 return NotFound();
             }
-
+            
             var slot = await _context.Slot.FindAsync(id, dateTime);
             if (slot == null)
             {
