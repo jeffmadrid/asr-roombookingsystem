@@ -7,7 +7,10 @@
 <h1>Available Slots</h1>
 <form asp-controller="Student" asp-action="Index" method="get">
     <div>
-        <p><select asp-for="StaffId" asp-items="Model.StaffId"></select></p>
+        @Html.DropDownListFor(e => e.StaffId, Model.StaffId as IEnumerable<SelectListItem>)
+        <input asp-for="DateStart" class="form-control" />
+        
+            
         <input type="submit" value="Search" />
     </div>
        
@@ -45,10 +48,21 @@
                     @Html.DisplayFor(modelItem => item.StudentID)
                 </td>
                 <td>
-                    <a asp-action="BookSlot" asp-route-id="@item.RoomID" asp-route-datetime="@item.StartTime">Book a slot</a> |
-                    <a asp-action="CancelSlot" asp-route-id="@item.RoomID" asp-route-datetime="@item.StartTime">Cancel a Booking</a> |
+                    @{
+                        if (item.StudentID == null)
+                        {
+                            <a asp-action="BookSlot" asp-route-id="@item.RoomID" asp-route-datetime="@item.StartTime">Book a slot</a>
+                        }
+                        else
+                        {
+                            <a asp-action="BookSlot" asp-route-id="@item.RoomID" asp-route-datetime="@item.StartTime">Book a slot</a> <b>|</b>
+                            <a asp-action="CancelSlot" asp-route-id="@item.RoomID" asp-route-datetime="@item.StartTime">Cancel a Booking</a>
+                        }
+                    }
+
                 </td>
             </tr>
         }
     </tbody>
 </table>
+

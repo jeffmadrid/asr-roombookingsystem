@@ -20,12 +20,15 @@ namespace Asr.Controllers
         }
 
         // GET: Student
-        public async Task<IActionResult> Index(string staffId,DateTime dateTime)
+        public async Task<IActionResult> Index(string staffId,DateTime datestart)
         {
             var staff = _context.Staff.Select(x => x.StaffID);
             var slot = _context.Slot.Select(x => x);
             if (!string.IsNullOrEmpty(staffId))
                 slot = _context.Slot.Where(x => x.StaffID == staffId && x.StudentID ==null);
+            if (datestart.ToString() != "1/1/0001 12:00:00 AM")
+                slot = _context.Slot.Where(x => x.StaffID == staffId && x.StartTime == datestart && x.StudentID == null);
+
             return View(new SlotStaffViewModel
             {
                 Slots = await slot.OrderBy(x => x.StartTime).ToListAsync(),StaffId = new SelectList(await staff.ToListAsync())
