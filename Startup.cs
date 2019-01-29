@@ -34,7 +34,6 @@ namespace Asr
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             //Added for external google log in
             services.Configure<MvcOptions>(options => options.Filters.Add(new RequireHttpsAttribute()));
 
@@ -80,7 +79,6 @@ namespace Asr
                 app.UseHsts();
             }
 
-
             //Uncomment this for handling errors or app release stage
             //app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
 
@@ -90,7 +88,6 @@ namespace Asr
             app.UseHttpsRedirection(); //this didn't exist in 2.0
             app.UseStaticFiles();
             //app.UseCookiePolicy();
-
             app.UseAuthentication();
 
             app.UseMvc(routes => routes.MapRoute(

@@ -26,4 +26,7 @@
     <Folder Include="Areas\Identity\Data\" />
     <Folder Include="Views\StatusCode\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\Staff\Create.cshtml" />
+  </ItemGroup>
 </Project>
