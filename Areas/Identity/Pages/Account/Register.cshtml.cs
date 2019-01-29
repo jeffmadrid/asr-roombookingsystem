@@ -86,6 +86,7 @@ namespace Asr.Areas.Identity.Pages.Account
 
                 if (id.StartsWith('e'))
                 {
+                    var staff = new Staff { StaffID = id, Name = Input.Name, Email = Input.Email };
                     user = new AppUser { UserName = Input.Email, Email = Input.Email, Staff = staff, StaffID = id };
                     role = Constants.StaffRole;
                 }
