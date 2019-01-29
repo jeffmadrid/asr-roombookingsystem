@@ -6,20 +6,22 @@ namespace Asr.Models
     public class Slot
     {
         [Required]
+        [Display(Name = "Room Name")]
         public string RoomID { get; set; }
         public virtual Room Room { get; set; }
 
         [Required]  
-        [CheckDate(ErrorMessage ="You can create slot in the past")]
+        [CheckDate(ErrorMessage ="You cannot create slot in the past")]
+        [Display(Name = "Date and Time")]
         public DateTime StartTime { get; set; }
 
         [Required]
-
+        [Display(Name = "Staff")]
         public string StaffID { get; set; }
         public virtual Staff Staff { get; set; }
 
+        [Display(Name = "BookedIn Student")]
         public string StudentID { get; set; }
-        [Display(Name = "Booked Student")]
         public virtual Student Student { get; set; }
     }
 }
