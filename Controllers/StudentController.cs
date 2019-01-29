@@ -20,7 +20,7 @@ namespace Asr.Controllers
         }
 
         // GET: Student
-        public async Task<IActionResult> Index(string staffId,DateTime datestart)
+        public async Task<IActionResult> Index(string staffId, DateTime? datestart)
         {
             var staff = _context.Staff.Select(x => x.StaffID);
             var slot = _context.Slot.Select(x => x);

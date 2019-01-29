@@ -36,24 +36,26 @@ namespace Asr.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Staff/Details/5
-        public async Task<IActionResult> Details(string id)
+        // GET: Slot/Details/5
+        public async Task<IActionResult> Details(string id, DateTime dateTime)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var staff = await _context.Staff
-                .FirstOrDefaultAsync(m => m.StaffID == id);
-            if (staff == null)
+            var slot = await _context.Slot
+                .Include(s => s.Room)
+                .Include(s => s.Staff)
+                .Include(s => s.Student)
+                .FirstOrDefaultAsync(m => m.RoomID == id && m.StartTime == dateTime);
+            if (slot == null)
             {
                 return NotFound();
             }
 
-            return View(staff);
+            return View(slot);
         }
-
         // GET: Slot/Create
         public IActionResult Create()
         {
@@ -83,57 +85,6 @@ namespace Asr.Controllers
             //ViewData["StudentID"] = new SelectList(_context.Student, "StudentID", "StudentID", slot.StudentID);
             return View(slot);
         }
-
-        //// GET: Staff/Edit/5
-        //public async Task<IActionResult> Edit(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var staff = await _context.Staff.FindAsync(id);
-        //    if (staff == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(staff);
-        //}
-
-        //// POST: Staff/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(string id, [Bind("StaffID,Name,Email")] Staff staff)
-        //{
-        //    if (id != staff.StaffID)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(staff);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!StaffExists(staff.StaffID))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(staff);
-        //}
 
         // GET: Slot/Delete/5
         public async Task<IActionResult> Delete(string id, DateTime dateTime)
