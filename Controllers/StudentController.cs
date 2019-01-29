@@ -23,7 +23,7 @@ namespace Asr.Controllers
         }
 
         // GET: Student
-        public async Task<IActionResult> Index(string staffId,DateTime? datestart)
+        public async Task<IActionResult> Index(string staffId, DateTime? datestart)
         {
             var loggedInUser = User.Identity.Name;
             

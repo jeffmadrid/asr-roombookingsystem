@@ -80,12 +80,37 @@ namespace Asr.Areas.Identity.Pages.Account
             {
                 //TODO Since StaffID and StudentID are foreign keys at AspNetUsers columns
                 //First need to add the user registering to the Student/Staff table
+                var id = Input.Email.Substring(0, Input.Email.IndexOf('@'));
+                AppUser user;
+                string role;
 
-                var user = new AppUser { UserName = Input.Email, Email = Input.Email };
+                if (id.StartsWith('e'))
+                {
+                    var staff = new Staff { StaffID = id, Name = Input.Name, Email = Input.Email };
+                    user = new AppUser { UserName = Input.Email, Email = Input.Email, Staff = staff, StaffID = id };
+                    role = Constants.StaffRole;
+                }
+                else if (id.StartsWith('s'))
+                {
+                    var student = new Student { StudentID = id, Name = Input.Name, Email = Input.Email };
+                    user = new AppUser { UserName = Input.Email, Email = Input.Email, Student = student, StudentID = id };
+                    role = Constants.StudentRole;
+                }
+                else
+                {
+                    throw new Exception();
+                }
+
+                //var user = Input.Email.StartsWith('e') ?
+                    //new AppUser { UserName = Input.Email, Email = Input.Email } ://, StaffID = id } :
+                    //Input.Email.StartsWith('s') ?
+                    //new AppUser { UserName = Input.Email, Email = Input.Email } ://, StudentID = id } :
+                    //throw new Exception();
+
+                //var user = new AppUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
-                await _userManager.AddToRoleAsync(user, user.UserName.StartsWith('e') ? Constants.StaffRole :
-                    user.UserName.StartsWith('s') ? Constants.StudentRole : throw new Exception());
+                await _userManager.AddToRoleAsync(user, role);
 
                 if (result.Succeeded)
                 {

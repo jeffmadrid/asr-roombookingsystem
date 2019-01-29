@@ -77,13 +77,13 @@ namespace Asr.Data
                 new Slot
                 {
                     RoomID = "A",
-                    StartTime = new DateTime(2019, 1, 30),
+                    StartTime = new DateTime(2019, 1, 30, 9, 0, 0),
                     StaffID = "e12345"
                 },
                 new Slot
                 {
                     RoomID = "B",
-                    StartTime = new DateTime(2019, 1, 30),
+                    StartTime = new DateTime(2019, 1, 30, 9, 0, 0),
                     StaffID = "e56789",
                     StudentID = "s1234567"
                 }
