@@ -20,75 +20,52 @@ namespace Asr.Controllers
         }
 
         // GET: Student
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string staffId,DateTime datestart)
         {
-            return View(await _context.Student.ToListAsync());
-        }
+            var staff = _context.Staff.Select(x => x.StaffID);
+            var slot = _context.Slot.Select(x => x);
+            if (!string.IsNullOrEmpty(staffId))
+                slot = _context.Slot.Where(x => x.StaffID == staffId && x.StudentID ==null);
+            if (datestart.ToString() != "1/1/0001 12:00:00 AM")
+                slot = _context.Slot.Where(x => x.StaffID == staffId && x.StartTime.Date == datestart && x.StudentID == null);
 
-        // GET: Student/Details/5
-        public async Task<IActionResult> Details(string id)
-        {
-            if (id == null)
+            return View(new SlotStaffViewModel
             {
-                return NotFound();
-            }
-
-            var student = await _context.Student
-                .FirstOrDefaultAsync(m => m.StudentID == id);
-            if (student == null)
-            {
-                return NotFound();
-            }
-
-            return View(student);
+                Slots = await slot.OrderBy(x => x.StartTime).ToListAsync(),StaffId = new SelectList(await staff.ToListAsync())
+            });
         }
 
-        // GET: Student/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Student/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentID,Name,Email")] Student student)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(student);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(student);
-        }
+       
+       
 
         // GET: Student/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        // GET: Slot/Edit/5
+        public async Task<IActionResult> BookSlot(string id, DateTime dateTime)
         {
+
             if (id == null)
             {
                 return NotFound();
             }
-
-            var student = await _context.Student.FindAsync(id);
-            if (student == null)
+            
+            var slot = await _context.Slot.FindAsync(id, dateTime);
+            if (slot == null)
             {
                 return NotFound();
             }
-            return View(student);
+          
+            ViewData["StudentID"] = new SelectList(_context.Student, "StudentID", "StudentID", slot.StudentID);
+            return View(slot);
         }
 
-        // POST: Student/Edit/5
+        // POST: Slot/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("StudentID,Name,Email")] Student student)
+        public async Task<IActionResult> BookSlot(string id, [Bind("RoomID,StartTime,StaffID,StudentID")] Slot slot)
         {
-            if (id != student.StudentID)
+            if (id != slot.RoomID)
             {
                 return NotFound();
             }
@@ -97,12 +74,12 @@ namespace Asr.Controllers
             {
                 try
                 {
-                    _context.Update(student);
+                    _context.Update(slot);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentExists(student.StudentID))
+                    if (!SlotExists(slot.RoomID))
                     {
                         return NotFound();
                     }
@@ -113,41 +90,67 @@ namespace Asr.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(student);
+            ViewData["StudentID"] = new SelectList(_context.Student, "StudentID", "StudentID", slot.StudentID);
+            return View(slot);
         }
 
-        // GET: Student/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> CanCelSlot(string id, DateTime dateTime)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var student = await _context.Student
-                .FirstOrDefaultAsync(m => m.StudentID == id);
-            if (student == null)
+            var slot = await _context.Slot.FindAsync(id, dateTime);
+            if (slot == null)
             {
                 return NotFound();
             }
 
-            return View(student);
+            ViewData["StudentID"] = new SelectList(_context.Student, "StudentID", "StudentID", slot.StudentID);
+            return View(slot);
         }
 
-        // POST: Student/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Slot/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult>CancelSlot(string id, [Bind("RoomID,StartTime,StaffID,StudentID")] Slot slot)
         {
-            var student = await _context.Student.FindAsync(id);
-            _context.Student.Remove(student);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (id != slot.RoomID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(slot);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!SlotExists(slot.RoomID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["StudentID"] = new SelectList(_context.Student, "StudentID", "StudentID", slot.StudentID);
+            return View(slot);
         }
 
-        private bool StudentExists(string id)
+
+        private bool SlotExists(string id)
         {
-            return _context.Student.Any(e => e.StudentID == id);
+            return _context.Slot.Any(e => e.RoomID == id);
         }
     }
 }
