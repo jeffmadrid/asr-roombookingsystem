@@ -38,20 +38,10 @@ namespace Asr
             //Added for external google log in
             services.Configure<MvcOptions>(options => options.Filters.Add(new RequireHttpsAttribute()));
 
-
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseLazyLoadingProxies().UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-
-            //services.AddDefaultIdentity<AppUser>(options =>
-            //{
-            //    options.Password.RequiredLength = 3;
-            //    options.Password.RequireDigit = options.Password.RequireNonAlphanumeric =
-            //        options.Password.RequireUppercase = options.Password.RequireLowercase = false;
-            //}).AddEntityFrameworkStores<ApplicationDbContext>();
-
-
+                   
             // https://stackoverflow.com/questions/52531131/asp-net-core-2-1-identity-role-based-authorization-access-denied
             services.AddIdentity<AppUser, IdentityRole>(options =>
             {
@@ -71,9 +61,6 @@ namespace Asr
                 facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
                 facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             });
-            //services.AddDefaultIdentity<IdentityUser>()
-            //.AddDefaultUI(UIFramework.Bootstrap4)
-            //.AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -84,7 +71,7 @@ namespace Asr
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //app.UseDatabaseErrorPage(); //TODO what is this
+                app.UseDatabaseErrorPage(); //TODO what is this
             }
             else
             {
