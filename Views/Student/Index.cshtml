@@ -7,9 +7,24 @@
 <h1>Available Slots</h1>
 <form asp-controller="Student" asp-action="Index" method="get">
     <div class="form-group">
-        @Html.DropDownListFor(e => e.StaffId, Model.StaffId as IEnumerable<SelectListItem>)
-        <input asp-for="DateStart" class="form-control" />      
-        <input type="submit" value="Search" />
+        <table>
+
+
+            <tr>
+                <th>
+                    @Html.DropDownListFor(e => e.StaffId, Model.StaffId as IEnumerable<SelectListItem>)
+                </th>
+                <th>
+                    <input asp-for="DateStart" class="form-control" />
+                </th>
+                <th>
+                    <input type="submit" value="Search" />
+                </th>
+
+            </tr>
+
+        </table>
+       
     </div>
        
     
@@ -25,8 +40,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Slots[0].StartTime)
             </th>
-            <th> @Html.DisplayNameFor(model => model.Slots[0].StaffID) </th>
-            <th> @Html.DisplayNameFor(model => model.Slots[0].StudentID) </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slots[0].StaffID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slots[0].StudentID)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -53,7 +72,7 @@
                         }
                         else
                         {
-                            <a asp-action="BookSlot" asp-route-id="@item.RoomID" asp-route-datetime="@item.StartTime">Book a slot</a> <b>|</b>
+                           
                             <a asp-action="CancelSlot" asp-route-id="@item.RoomID" asp-route-datetime="@item.StartTime">Cancel a Booking</a>
                         }
                     }

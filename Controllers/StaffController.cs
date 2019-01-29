@@ -53,7 +53,6 @@ namespace Asr.Controllers
             {
                 return NotFound();
             }
-
             return View(slot);
         }
         // GET: Slot/Create

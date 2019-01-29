@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Asr.Data;
 using Asr.Models;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace Asr.Controllers
 {
+    [Authorize(Roles = Constants.StudentRole)]
     public class StudentController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,11 +25,14 @@ namespace Asr.Controllers
         // GET: Student
         public async Task<IActionResult> Index(string staffId, DateTime? datestart)
         {
-            var staff = _context.Staff.Select(x => x.StaffID);
+            var loggedInUser = User.Identity.Name;
+            
+             var staff = _context.Staff.Select(x => x.StaffID);
             var slot = _context.Slot.Select(x => x);
             if (!string.IsNullOrEmpty(staffId))
                 slot = _context.Slot.Where(x => x.StaffID == staffId && x.StudentID ==null);
-            if (datestart.ToString() != "1/1/0001 12:00:00 AM")
+            if (!string.IsNullOrEmpty(datestart.ToString()))
+                //if (datestart.ToString() != "1/1/0001 12:00:00 AM")
                 slot = _context.Slot.Where(x => x.StaffID == staffId && x.StartTime.Date == datestart && x.StudentID == null);
 
             return View(new SlotStaffViewModel
@@ -42,7 +48,7 @@ namespace Asr.Controllers
         // GET: Slot/Edit/5
         public async Task<IActionResult> BookSlot(string id, DateTime dateTime)
         {
-
+            
             if (id == null)
             {
                 return NotFound();
