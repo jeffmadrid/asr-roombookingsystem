@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Asr.Models;
+using AsrWebAPI.Data.DataManager;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -9,21 +11,24 @@ using Microsoft.AspNetCore.Mvc;
 namespace AsrWebAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class SlotController : Controller
+    [ApiController]
+    public class SlotsController : Controller
     {
+        private SlotManager _slotManager;
+
+        public SlotsController(SlotManager slotManager)
+        {
+            _slotManager = slotManager;
+        }
+
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        public IEnumerable<Slot> Get() => _slotManager.GetAllSlots();
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        public IEnumerable<Slot> Get(string id) =>
+            _slotManager.GetSlotsOf(id);
 
         // POST api/values
         [HttpPost]
