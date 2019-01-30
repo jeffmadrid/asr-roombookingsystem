@@ -24,10 +24,10 @@
             </tr>
 
         </table>
-       
+
     </div>
-       
-    
+
+
 </form>
 
 
@@ -65,18 +65,18 @@
                     @Html.DisplayFor(modelItem => item.StudentID)
                 </td>
                 <td>
-                    @{
-                        if (item.StudentID == null)
-                        {
-                            <a asp-action="BookSlot" asp-route-id="@item.RoomID" asp-route-datetime="@item.StartTime">Book a slot</a>
-                        }
-                        else
-                        {
-                           
-                            <a asp-action="CancelSlot" asp-route-id="@item.RoomID" asp-route-datetime="@item.StartTime">Cancel a Booking</a>
-                        }
+                    @if (item.StudentID != null)
+                    {
+                        <a asp-action="CancelSlot" asp-route-id="@item.RoomID" asp-route-datetime="@item.StartTime">Cancel a Booking</a>
                     }
-
+                    else if (Model.DaysBookedForStudent.Count(x => x == item.StartTime.Date) >= 1)
+                    {
+                        <span>You cannot book again on this day.</span>
+                    }
+                    else
+                    {
+                        <a asp-action="BookSlot" asp-route-id="@item.RoomID" asp-route-datetime="@item.StartTime">Book a slot</a>
+                    }
                 </td>
             </tr>
         }
