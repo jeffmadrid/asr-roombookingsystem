@@ -34,7 +34,6 @@ namespace Asr
                     logger.LogError(e, "An error occurred seeding the DB.");
                 }
             }
-
             host.Run();
         }
 
