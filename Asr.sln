@@ -1,9 +1,12 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asr", "Asr\Asr.csproj", "{82310941-8A49-40BE-9685-D44DD3AA1A4F}"
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Asr", "Asr\Asr.csproj", "{82310941-8A49-40BE-9685-D44DD3AA1A4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsrWebAPI", "AsrWebAPI\AsrWebAPI.csproj", "{57A0502A-4DB1-4763-88B0-ED95C42DD15C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsrWebAPI", "AsrWebAPI\AsrWebAPI.csproj", "{57A0502A-4DB1-4763-88B0-ED95C42DD15C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsrAngular", "AsrAngular\AsrAngular.csproj", "{0C67E956-76CA-4773-A22C-B4AE29CAC66C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,5 +22,15 @@ Global
 		{57A0502A-4DB1-4763-88B0-ED95C42DD15C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57A0502A-4DB1-4763-88B0-ED95C42DD15C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57A0502A-4DB1-4763-88B0-ED95C42DD15C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C67E956-76CA-4773-A22C-B4AE29CAC66C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C67E956-76CA-4773-A22C-B4AE29CAC66C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C67E956-76CA-4773-A22C-B4AE29CAC66C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C67E956-76CA-4773-A22C-B4AE29CAC66C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F683875F-ED99-4E30-9A9C-2FBAD5F2832A}
 	EndGlobalSection
 EndGlobal
