@@ -3,6 +3,11 @@ https://www.lucidchart.com/invitations/accept/570f4773-2886-4f55-b17c-48768d7dfe
 
 S3697158
 
+Advantage of social media login:
+- New users do not need to create a 'local account' for the website and can use their preferred social media login (google/facebook/twitter)
+- Organisations don't need to store the data/password of the new user, meaning they are not liable if the accounts registered through external social media login gets compromised
+- Ease of use for new users
+
 
 Microsoft.VisualStudio.Web.CodeGeneration.Tools has been deprecated in favor of dotnet-aspnet-codegenerator
 https://github.com/aspnet/Tooling/issues/1075
