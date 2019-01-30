@@ -75,13 +75,21 @@ namespace Asr.Controllers
 
             if (ModelState.IsValid)
             {
+                var slots = _context.Slot.Include(s => s.Room).Include(s => s.Staff).Include(s => s.Student);
+
+                if (slots.Any(x => x.RoomID == slot.RoomID && x.StartTime == slot.StartTime))
+                    return RedirectToAction(nameof(Index)); //TODO redirect to an error page
+                if (slots.Count(x => x.RoomID == slot.RoomID && x.StartTime.Date == slot.StartTime.Date) >= 2)
+                    return RedirectToAction(nameof(Index)); //TODO redirect to an error page
+                if (slots.Count(x => x.StaffID == slot.StaffID && x.StartTime.Date == slot.StartTime.Date) >= 4)
+                    return RedirectToAction(nameof(Index)); //TODO redirect to an error page
+
                 _context.Add(slot);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["RoomID"] = new SelectList(_context.Room, "RoomID", "RoomID", slot.RoomID);
             ViewData["StaffID"] = new SelectList(_context.Staff, "StaffID", "StaffID", slot.StaffID);
-            //ViewData["StudentID"] = new SelectList(_context.Student, "StudentID", "StudentID", slot.StudentID);
             return View(slot);
         }
 

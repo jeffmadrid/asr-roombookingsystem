@@ -13,6 +13,7 @@ namespace Asr.Models
         [Required]  
         [CheckDate(ErrorMessage ="You cannot create slot in the past")]
         [Display(Name = "Date and Time")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy h:mm tt}")]
         public DateTime StartTime { get; set; }
 
         [Required]
