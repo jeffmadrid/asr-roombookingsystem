@@ -11,28 +11,24 @@ using Microsoft.AspNetCore.Mvc;
 namespace AsrWebAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class SlotController : Controller
+    [ApiController]
+    public class SlotsController : Controller
     {
         private SlotManager _slotManager;
 
-        public SlotController(SlotManager slotManager)
+        public SlotsController(SlotManager slotManager)
         {
             _slotManager = slotManager;
         }
 
         // GET: api/values
         [HttpGet]
-        public IEnumerable<Slot> Get()
-        {
-            return _slotManager.GetAll();
-        }
+        public IEnumerable<Slot> Get() => _slotManager.GetAllSlots();
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        public IEnumerable<Slot> Get(string id) =>
+            _slotManager.GetSlotsOf(id);
 
         // POST api/values
         [HttpPost]

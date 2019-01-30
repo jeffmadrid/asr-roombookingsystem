@@ -11,10 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Asr.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Data\DataManager\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asr\Asr.csproj" />
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Asr.Data;
 using Asr.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AsrWebAPI.Data.DataManager
 {
@@ -18,42 +19,43 @@ namespace AsrWebAPI.Data.DataManager
         /*
          * Gets all the slots
          */       
-        public IEnumerable<Slot> GetAll()
+        public IEnumerable<Slot> GetAllSlots()
         {
             return _context.Slot.ToList();
         }
 
         /*
-         * Gets the slot that corresponds to the roomId and datetime parameters       
+         * Gets all the created slots of the staffID parameter
          */
-        public Slot Get(string roomID, DateTime dateTime)
-        {
-            return _context.Slot.Find(roomID, dateTime);
-        }
+        public IEnumerable<Slot> GetSlotsOf(string id) =>
+            id.StartsWith('e') ? _context.Slot.Where(x => x.StaffID == id) :
+                _context.Slot.Where(x => x.StudentID == id);
 
         /*
-         * Adds slot to the database
+         * Adds venues roomID {A,B,C,D...} to the system
          */
-        public void Add(Slot slot)
+        public void AddRoom(string roomID)
         {
-            _context.Slot.Add(slot);
+            _context.Room.Add(new Room { RoomID = roomID });
             _context.SaveChanges();
         }
 
         /*
          * Deletes the slot on the database
          */
-        public void Delete(Slot slot)
+        public void DeleteSlot(string roomID, DateTime dateTime, string staffID)
         {
-            _context.Slot.Remove(slot);
+            _context.Slot.Remove(_context.Slot.First(x => 
+                x.RoomID == roomID && x.StaffID == staffID && x.StartTime == dateTime));
             _context.SaveChanges();
         }
 
         /*
          * Updates the database details. should be book/unbooking of student
          */
-        public void Update(Slot slot)
+        public void CancelBooking(Slot slot)
         {
+            
             _context.Update(slot);
             _context.SaveChanges();
         }
