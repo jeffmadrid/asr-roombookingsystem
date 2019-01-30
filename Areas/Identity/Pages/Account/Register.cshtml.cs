@@ -101,13 +101,6 @@ namespace Asr.Areas.Identity.Pages.Account
                     throw new Exception();
                 }
 
-                //var user = Input.Email.StartsWith('e') ?
-                    //new AppUser { UserName = Input.Email, Email = Input.Email } ://, StaffID = id } :
-                    //Input.Email.StartsWith('s') ?
-                    //new AppUser { UserName = Input.Email, Email = Input.Email } ://, StudentID = id } :
-                    //throw new Exception();
-
-                //var user = new AppUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 await _userManager.AddToRoleAsync(user, role);

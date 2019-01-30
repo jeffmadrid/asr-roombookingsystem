@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Asr.Data;
 using Asr.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -42,6 +43,10 @@ namespace Asr.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            [Required]
+            [Display(Name = "Name")]
+            public string Name { get; set; }
+
             [Required]
             [EmailAddress]
             [RegularExpression(@"^s\d{7}@student.rmit.edu.au|e\d{5}@rmit.edu.au$",
@@ -117,8 +122,31 @@ namespace Asr.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = Input.Email, Email = Input.Email };
+
+                var id = Input.Email.Substring(0, Input.Email.IndexOf('@'));
+                AppUser user;
+                string role;
+
+                if (id.StartsWith('e'))
+                {
+                    var staff = new Staff { StaffID = id, Name = Input.Name, Email = Input.Email };
+                    user = new AppUser { UserName = Input.Email, Email = Input.Email, Staff = staff, StaffID = id };
+                    role = Constants.StaffRole;
+                }
+                else if (id.StartsWith('s'))
+                {
+                    var student = new Student { StudentID = id, Name = Input.Name, Email = Input.Email };
+                    user = new AppUser { UserName = Input.Email, Email = Input.Email, Student = student, StudentID = id };
+                    role = Constants.StudentRole;
+                }
+                else
+                {
+                    throw new Exception();
+                }
+
                 var result = await _userManager.CreateAsync(user);
+                await _userManager.AddToRoleAsync(user, role);
+
                 if (result.Succeeded)
                 {
                     result = await _userManager.AddLoginAsync(user, info);
