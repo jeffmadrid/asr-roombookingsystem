@@ -11,6 +11,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { FetchSlotComponent } from './Components/fetch-slot/fetch-slot.component';
 import { AddRoomComponent } from './Components/add-room/add-room.component';
+import { DeleteSlotComponent } from './Components/delete-slot/delete-slot.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AddRoomComponent } from './Components/add-room/add-room.component';
     CounterComponent,
     FetchDataComponent,
     FetchSlotComponent,
-    AddRoomComponent
+    AddRoomComponent,
+    DeleteSlotComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
