@@ -9,6 +9,12 @@ Advantage of social media login:
 - Ease of use for new users
 
 
+dotnet ef dbcontext scaffold "Server=wdt2019.australiasoutheast.cloudapp.azure.com;Database=s3707189;uid=s3707189;pwd=abc123;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -o Models
+
+Component generation: (Angular)
+ng generate component fetch-slot --module ../app
+
+
 bootstrap.css -- 7520-7523 lines omitted this: cancelled...
 .mb-3,
 .my-3 {
