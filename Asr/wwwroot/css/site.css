@@ -1,16 +1,59 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+
+.own-index {
+    padding: 7rem 0 5rem;
+}
+
+.own-display {
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.own-index-container {
+    background-color: rgba(255,255,255,0.7);
+}
+
+.own-table {
+    margin: 0 auto;
+    width: 80%;
+    margin-bottom: 1rem;
+    background-color: rgba(255,255,255, 0.9);
+}
+
+.own-table thead th {
+    padding-left: 2rem;
+    font-size: 1.5rem;
+    font-weight:400;
+}
+
+.own-ul-nostyle {
+    list-style-type:circle;
+    font-weight: 100;
+}
+
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
 }
 
+
+.main-image-container {
+    background-image: url("../img/appointment.jpg");
+    background-size: cover;
+    background-position: center center;
+    height:600px;
+}
+
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 @media (min-width: 768px) {
   html {
@@ -42,9 +85,10 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
+
 .footer {
   position: absolute;
   bottom: 0;

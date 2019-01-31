@@ -29,8 +29,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\Images\logo.png" />
+    <Content Remove="wwwroot\img\appointment.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\img\logo.png" />
+    <None Include="wwwroot\img\appointment.jpg" />
   </ItemGroup>
 </Project>

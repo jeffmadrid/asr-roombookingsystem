@@ -2,7 +2,46 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="own-index">
+        <div class="text-center">
+            <div class="own-index-container">
+                <h1 class="own-display">Welcome to the RMIT ASR System</h1>
+                <p>This is a Web App specifically designed for the appointment, scheduling and reservation of room venues in RMIT<br /> for one-on-one consultation of students with the staff.</p>
+                <p>
+                    Start by <a asp-area="Identity" asp-page="/Account/Login">logging in</a> using your <strong>RMIT</strong> email account or through your personal <strong>Google</strong> or <strong>Facebook</strong> accounts.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div>
+        <table class="own-table">
+            <thead>
+                <tr>
+                    <th>Staff</th>
+                    <th>Student</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>
+                        <ul class="own-ul-nostyle">
+                            <li>Check room availability</li>
+                            <li>Create room slots</li>
+                            <li>Remove room slot</li>
+                        </ul>
+
+                    </th>
+                    <th>
+                        <ul class="own-ul-nostyle">
+                            <li>Check staff availability</li>
+                            <li>Book in a free room per day</li>
+                            <li>Cancel room booking</li>
+                        </ul>
+
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>

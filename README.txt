@@ -9,6 +9,13 @@ Advantage of social media login:
 - Ease of use for new users
 
 
+bootstrap.css -- 7520-7523 lines omitted this: cancelled...
+.mb-3,
+.my-3 {
+  margin-bottom: 1rem !important;
+}
+
+
 Microsoft.VisualStudio.Web.CodeGeneration.Tools has been deprecated in favor of dotnet-aspnet-codegenerator
 https://github.com/aspnet/Tooling/issues/1075
 
