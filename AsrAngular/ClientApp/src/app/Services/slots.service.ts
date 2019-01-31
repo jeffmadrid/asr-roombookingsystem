@@ -14,16 +14,11 @@ export class SlotsService {
   }
 
   getBookedSlot(id: string) {
-    return this._http.get(this.myAppUrl + "api/Slots/Get").map(res => res.json()).catch(this.errorHandler);
+    return this._http.get(this.myAppUrl + "api/Slots/GetBookedSlot").map(res => res.json()).catch(this.errorHandler);
   }
 
   getAllSlots() {
     return this._http.get(this.myAppUrl + "api/Slots/Index").map((response: Response) => response.json())
-      .catch(this.errorHandler);
-  }
-
-  getEmployeeById(id: number) {
-    return this._http.get(this.myAppUrl + "api/Employee/Details/" + id).map((response: Response) => response.json())
       .catch(this.errorHandler);
   }
 
