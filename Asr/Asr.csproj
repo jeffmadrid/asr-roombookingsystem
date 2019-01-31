@@ -25,5 +25,12 @@
   <ItemGroup>
     <Folder Include="Areas\Identity\Data\" />
     <Folder Include="Views\StatusCode\" />
+    <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\Images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\img\logo.png" />
   </ItemGroup>
 </Project>
