@@ -4,11 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>List of Slot</h1>
+<h1>Created Slots</h1>
 
-<p>
+<div class="own-float-right" >
     <a asp-action="Create">Create New Slot</a>
-</p>
+</div>
 @* This link sends the email address of the current user using url/get method to the controller*@
 <p>
     <a asp-action="Index" asp-route-staffid="@User.Identity.Name.Substring(0,6)">Show only my slot</a>
@@ -43,19 +43,27 @@
                     @Html.DisplayFor(modelItem => item.StartTime)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Staff.Name)
+                    <br>
                     @Html.DisplayFor(modelItem => item.Staff.StaffID)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Student.Name)
+                    <br>
                     @Html.DisplayFor(modelItem => item.Student.StudentID)
                 </td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.Room.RoomID" asp-route-datetime="@item.StartTime">Slot Details</a> |
-
-                    @if (item.Staff.Email == User.Identity.Name)
-                    {
-                        <a asp-action="Delete" asp-route-id="@item.Room.RoomID" asp-route-datetime="@item.StartTime">Remove Slot</a>
+                    @{
+                        if (item.Staff.Email == User.Identity.Name)
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.Room.RoomID" asp-route-datetime="@item.StartTime">Remove Slot</a>
+                        }
+                        else
+                        {
+                            <a>N/A</a>
+                        }
                     }
-
                 </td>
             </tr>
         }

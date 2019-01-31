@@ -5,10 +5,9 @@
 }
 
 <h1>Available Slots</h1>
-<form asp-controller="Student" asp-action="Index" method="get">
+<form asp-controller="Student" asp-action="Index" method="get" >
     <div class="form-group">
-        <table>
-
+        <table class="own-center">
 
             <tr>
                 <th>
@@ -59,9 +58,13 @@
                     @Html.DisplayFor(modelItem => item.StartTime)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Staff.Name)
+                    <br>
                     @Html.DisplayFor(modelItem => item.StaffID)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Student.Name)
+                    <br>
                     @Html.DisplayFor(modelItem => item.StudentID)
                 </td>
                 <td>

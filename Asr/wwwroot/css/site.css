@@ -34,19 +34,31 @@ for details on configuring this project to bundle and minify static web assets. 
     font-weight: 100;
 }
 
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+.own-faq-list {
+    list-style-type:upper-roman;
+    background-color: rgba(255,255,255,0.7);
 }
 
+.own-float-right{
+    float:right;
+}
+
+.own-center{
+    margin: 0 auto;
+}
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
 
 .main-image-container {
-    background-image: url("../img/appointment.jpg");
+    background-image: url("http://www.ecmacomb.org/images/appointment.jpg");
     background-size: cover;
     background-position: center center;
-    height:600px;
+    height: 600px;
+    padding-top: 15px;
 }
 
 
