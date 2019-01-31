@@ -18,7 +18,7 @@ export class SlotsService {
   }
 
   getAllSlots() {
-    return this._http.get(this.myAppUrl + "api/Slots/Index").map((response: Response) => response.json())
+    return this._http.get(this.myAppUrl + "api/Slots").map((response: Response) => response.json())
       .catch(this.errorHandler);
   }
 

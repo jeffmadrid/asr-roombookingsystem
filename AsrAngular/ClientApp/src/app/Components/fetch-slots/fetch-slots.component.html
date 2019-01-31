@@ -1,10 +1,24 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+<h1>Slots Data</h1>
+<p>This component demonstrates fetching Slot data from the server.</p>
+<p *ngIf="!slotList"><em>Loading...</em></p>
 
-</body>
-</html>
+<table class='table' *ngIf="slotList">
+  <thead>
+    <tr>
+      <th>Room ID</th>
+      <th>Start Time</th>
+      <th>Staff ID</th>
+      <th>Student ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sl of slotList">
+      <td>{{ sl.roomID }}</td>
+      <td>{{ sl.startTime }}</td>
+      <td>{{ sl.staffID }}</td>
+      <td>{{ sl.studentID }}</td>
+      <td>
+      
+    </tr>
+  </tbody>
+</table>

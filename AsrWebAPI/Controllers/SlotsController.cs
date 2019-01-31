@@ -23,12 +23,12 @@ namespace AsrWebAPI.Controllers
 
         // GET: api/values
         [HttpGet]
-        [Route("Index")]
+        //[Route("Index")]
         public IEnumerable<Slot> Get() => _slotManager.GetAllSlots();
 
         // GET api/values/5
         [HttpGet("{id}")]
-        [Route("GetBookedSlot")]
+        //[Route("GetBookedSlot")]
         public IEnumerable<Slot> Get(string id) =>
             _slotManager.GetSlotsOf(id);
 
@@ -41,14 +41,14 @@ namespace AsrWebAPI.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        [Route("UpdateStudent")]
+        //[Route("UpdateStudent")]
         public void Put(int id, [FromBody]string value)
         {
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        [Route("DeleteSlot")]
+        //[Route("DeleteSlot")]
         public void Delete(int id)
         {
         }

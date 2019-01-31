@@ -31,9 +31,11 @@ export class FetchSlotComponent {
 }
 
 interface SlotData {
-  employeeId: number;
-  name: string;
-  gender: string;
-  city: string;
-  department: string;
+  roomID: string;
+  //room: object;
+  stratTime: string;
+  staffID: string;
+  //staff: object;
+  studentID: string;
+  //student: object;
 }
