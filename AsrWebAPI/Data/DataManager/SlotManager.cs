@@ -34,10 +34,9 @@ namespace AsrWebAPI.Data.DataManager
         /*
          * Deletes the slot on the database
          */
-        public void DeleteSlot(string roomID, DateTime dateTime, string staffID)
+        public void DeleteSlot(Slot slot)
         {
-            _context.Slot.Remove(_context.Slot.First(x =>
-                x.RoomID == roomID && x.StaffID == staffID && x.StartTime == dateTime));
+            _context.Slot.Remove(_context.Slot.Find(slot));
             _context.SaveChanges();
         }
 
