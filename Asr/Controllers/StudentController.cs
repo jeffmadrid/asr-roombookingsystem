@@ -35,7 +35,11 @@ namespace Asr.Controllers
                 slot = _context.Slot.Where(x => x.StaffID == staffId && x.StartTime.Date == datestart && x.StudentID == null);
             return View(new SlotStaffViewModel
             {
-                Slots = await slot.OrderBy(x => x.StartTime).ToListAsync(),StaffId = new SelectList(await staff.ToListAsync())
+                Slots = await slot.OrderBy(x => x.StartTime).ToListAsync(),
+                StaffId = new SelectList(await staff.ToListAsync()),
+                DaysBookedForStudent = _context.Slot
+                        .Where(x => x.Student != null && x.Student.Email == User.Identity.Name)
+                        .Select(x => x.StartTime.Date).ToList()
             });
         }
 

@@ -11,5 +11,7 @@ namespace Asr.Models
         public List<Slot> Slots { get; set; }
         public SelectList StaffId { get; set; }
         public DateTime DateStart { get; set; }
+        public List<DateTime> DaysBookedForStudent { get; set; }
+
     }
 }
