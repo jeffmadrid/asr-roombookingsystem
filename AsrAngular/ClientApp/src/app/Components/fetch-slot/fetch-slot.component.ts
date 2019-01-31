@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-fetch-slot',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FetchSlotComponent implements OnInit {
 
-  constructor() { }
+    public slots: Slot;
+
+
+    constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+      
+    }
 
   ngOnInit() {
   }
 
+}
+
+
+interface Slot {
+    roomID: string;
+    startTime: Date;
+    staffID: string;
+    studentID: string;
 }
