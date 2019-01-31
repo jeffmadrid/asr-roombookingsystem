@@ -10,8 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { FetchSlotComponent } from './Components/fetch-slot/fetch-slot.component';
-import { AddRoomComponent } from './Components/add-room/add-room.component';
 import { DeleteSlotComponent } from './Components/delete-slot/delete-slot.component';
+import { AddRoomComponent } from './Components/add-room/add-room.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +21,8 @@ import { DeleteSlotComponent } from './Components/delete-slot/delete-slot.compon
     CounterComponent,
     FetchDataComponent,
     FetchSlotComponent,
-    AddRoomComponent,
-    DeleteSlotComponent
+    DeleteSlotComponent,
+    AddRoomComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -32,6 +32,10 @@ import { DeleteSlotComponent } from './Components/delete-slot/delete-slot.compon
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'fetch-slot', component: FetchSlotComponent },
+      { path: 'delete-slot', component: DeleteSlotComponent },
+      { path: 'add-room', component: AddRoomComponent },
+
     ])
   ],
   providers: [],
