@@ -32,6 +32,16 @@ namespace AsrWebAPI.Data.DataManager
                 _context.Slot.Where(x => x.StudentID == id);
 
         /*
+         * Deletes the slot on the database
+         */
+        public void DeleteSlot(string roomID, DateTime dateTime, string staffID)
+        {
+            _context.Slot.Remove(_context.Slot.First(x =>
+                x.RoomID == roomID && x.StaffID == staffID && x.StartTime == dateTime));
+            _context.SaveChanges();
+        }
+
+        /*
          * Adds venues roomID {A,B,C,D...} to the system
          */
         public void AddRoom(string roomID)
@@ -41,22 +51,33 @@ namespace AsrWebAPI.Data.DataManager
         }
 
         /*
-         * Deletes the slot on the database
+         * Edit the roomIDs/rename? or maybe just delete the room?
          */
-        public void DeleteSlot(string roomID, DateTime dateTime, string staffID)
+        public void EditRoom(string roomID)
         {
-            _context.Slot.Remove(_context.Slot.First(x => 
-                x.RoomID == roomID && x.StaffID == staffID && x.StartTime == dateTime));
+            _context.Room.Find(roomID);
+        }
+
+
+        /*
+         * Edit the booked in student
+         */
+        public void EditBookedStudent(Slot slot, string studentID)
+        {
+            var theSlot = _context.Slot.Find(slot);
+            theSlot.StudentID = studentID;
+            _context.Update(theSlot);
             _context.SaveChanges();
         }
 
         /*
-         * Updates the database details. should be book/unbooking of student
+         * Removes the booked in student
          */
         public void CancelBooking(Slot slot)
         {
-            
-            _context.Update(slot);
+            var theSlot = _context.Slot.Find(slot);
+            theSlot.StudentID = null;
+            _context.Update(theSlot);
             _context.SaveChanges();
         }
     }
