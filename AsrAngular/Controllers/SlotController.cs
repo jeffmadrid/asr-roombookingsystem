@@ -44,7 +44,7 @@ namespace AsrAngular.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void DeleteSlot(Slot slot) =>
+        public int DeleteSlot(Slot slot) =>
             _slotManager.DeleteSlot(slot);
     }
 }

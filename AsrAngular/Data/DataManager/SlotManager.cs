@@ -34,50 +34,55 @@ namespace AsrAngular.Data.DataManager
         /*
          * Deletes the slot on the database
          */
-        public void DeleteSlot(Slot slot)
+        public int DeleteSlot(Slot slot)
         {
             _context.Slot.Remove(_context.Slot.Find(slot));
             _context.SaveChanges();
+            return 1;
         }
 
         /*
          * Adds venues roomID {A,B,C,D...} to the system
          */
-        public void AddRoom(string roomID)
+        public int AddRoom(string roomID)
         {
             _context.Room.Add(new Room { RoomId = roomID });
             _context.SaveChanges();
+            return 1;
         }
 
         /*
          * Edit the roomIDs/rename? or maybe just delete the room?
          */
-        public void EditRoom(string roomID)
+        public int EditRoom(string roomID)
         {
             _context.Room.Find(roomID);
+            return 1;
         }
 
 
         /*
          * Edit the booked in student
          */
-        public void EditBookedStudent(Slot slot, string studentId)
+        public int EditBookedStudent(Slot slot, string studentId)
         {
             var theSlot = _context.Slot.Find(slot);
             theSlot.StudentId = studentId;
             _context.Update(theSlot);
             _context.SaveChanges();
+            return 1;
         }
 
         /*
          * Removes the booked in student
          */
-        public void CancelBooking(Slot slot)
+        public int CancelBooking(Slot slot)
         {
             var theSlot = _context.Slot.Find(slot);
             theSlot.StudentId = null;
             _context.Update(theSlot);
             _context.SaveChanges();
+            return 1;
         }
     }
 }

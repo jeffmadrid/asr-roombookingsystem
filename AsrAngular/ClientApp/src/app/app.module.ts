@@ -16,6 +16,12 @@ import { EmployeeService } from "./services/employee.service";
 import { AddEmployeeComponent } from "./components/add-employee/add-employee.component";
 import { FetchEmployeeComponent } from "./components/fetch-employee/fetch-employee.component";
 
+import { SlotService } from "./Services/slot.service";
+import { AddRoomComponent } from './Components/add-room/add-room.component';
+import { FetchSlotComponent } from './Components/fetch-slot/fetch-slot.component';
+import { GetSlotComponent } from './Components/get-slot/get-slot.component';
+import { FetchRoomComponent } from './Components/fetch-room/fetch-room.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +30,11 @@ import { FetchEmployeeComponent } from "./components/fetch-employee/fetch-employ
     CounterComponent,
     FetchDataComponent,
     AddEmployeeComponent,
-    FetchEmployeeComponent
+    FetchEmployeeComponent,
+    AddRoomComponent,
+    FetchSlotComponent,
+    GetSlotComponent,
+    FetchRoomComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -39,10 +49,14 @@ import { FetchEmployeeComponent } from "./components/fetch-employee/fetch-employ
       { path: "fetch-data", component: FetchDataComponent },
       { path: "fetch-employee", component: FetchEmployeeComponent },
       { path: "add-employee", component: AddEmployeeComponent },
-      { path: "employee/edit/:id", component: AddEmployeeComponent }
+      { path: "employee/edit/:id", component: AddEmployeeComponent },
+      { path: "add-room", component: AddRoomComponent },
+      { path: "fetch-slot", component: FetchSlotComponent },
+      { path: "get-slot", component: GetSlotComponent }
+
     ])
   ],
-  providers: [EmployeeService],
+  providers: [EmployeeService, SlotService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
