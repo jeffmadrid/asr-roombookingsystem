@@ -6,15 +6,15 @@ import "rxjs/add/operator/catch";
 import "rxjs/add/observable/throw";
 
 @Injectable()
-export class SlotService {
+export class RoomService {
   myAppUrl: string = "";
 
   constructor(private _http: Http, @Inject("BASE_URL") baseUrl: string) {
     this.myAppUrl = baseUrl;
   }
 
-  getAllSlots() {
-    return this._http.get(this.myAppUrl + "api/Slot/Index").map((response: Response) => response.json())
+  getAll() {
+    return this._http.get(this.myAppUrl + "api/Room/Index").map((response: Response) => response.json())
       .catch(this.errorHandler);
   }
 

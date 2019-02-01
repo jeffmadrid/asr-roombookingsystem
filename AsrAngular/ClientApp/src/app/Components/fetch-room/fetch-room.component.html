@@ -1,2 +1,16 @@
 <h1>{{title}}</h1>
 
+<p *ngIf="!slotList"><em>Loading...</em></p>
+
+<table class='table' *ngIf="slotList">
+  <thead>
+    <tr>
+      <th>Room ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sl of roomList">
+      <td>{{ sl.roomId }}</td>
+    </tr>
+  </tbody>
+</table>

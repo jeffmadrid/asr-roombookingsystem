@@ -16,6 +16,7 @@ import { SlotService } from "./Services/slot.service";
 import { AddRoomComponent } from './Components/add-room/add-room.component';
 import { FetchSlotComponent } from './Components/fetch-slot/fetch-slot.component';
 import { FetchRoomComponent } from './Components/fetch-room/fetch-room.component';
+import { RoomService } from "./Services/room.service";
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { FetchRoomComponent } from './Components/fetch-room/fetch-room.component
 
     ])
   ],
-  providers: [SlotService],
+  providers: [SlotService, RoomService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

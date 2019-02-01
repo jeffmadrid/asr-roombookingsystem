@@ -23,7 +23,7 @@ namespace AsrAngular
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddTransient<SlotManager>();
+            services.AddTransient<WebAPIManager>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

@@ -14,21 +14,22 @@ namespace AsrAngular.Controllers
     [ApiController]
     public class SlotController : Controller
     {
-        private SlotManager _slotManager;
+        private WebAPIManager _manager;
 
-        public SlotController(SlotManager slotManager)
+        public SlotController(WebAPIManager slotManager)
         {
-            _slotManager = slotManager;
+            _manager = slotManager;
         }
 
         // GET: api/values
         [HttpGet]
-        public IEnumerable<Slot> Get() => _slotManager.GetAllSlots();
+        [Route("Index")]
+        public IEnumerable<Slot> Get() => _manager.GetAllSlots();
 
         // GET api/values/5
         [HttpGet("{id}")]
         public IEnumerable<Slot> Get(string id) =>
-            _slotManager.GetSlotsOf(id);
+            _manager.GetSlotsOf(id);
 
         // POST api/values
         [HttpPost]
@@ -45,6 +46,6 @@ namespace AsrAngular.Controllers
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public int DeleteSlot(Slot slot) =>
-            _slotManager.DeleteSlot(slot);
+            _manager.DeleteSlot(slot);
     }
 }

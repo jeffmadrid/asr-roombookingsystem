@@ -7,22 +7,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AsrAngular.Data.DataManager
 {
-    public class SlotManager
+    public class WebAPIManager
     {
         private s3707189Context _context = new s3707189Context();
 
-        //public SlotManager(s3707189Context context)
+        //public WebAPIManager(s3707189Context context)
         //{
         //    _context = context;
         //}
 
         /*
-         * Gets all the slots
+         * Gets all the slots and get all rooms
          */
-        public IEnumerable<Slot> GetAllSlots()
-        {
-            return _context.Slot.ToList();
-        }
+        public IEnumerable<Slot> GetAllSlots() => _context.Slot.ToList();
+        public IEnumerable<Room> GetAllRooms() => _context.Room.ToList();
 
         /*
          * Gets all the created slots of the staffID parameter
