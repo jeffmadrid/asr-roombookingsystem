@@ -43,15 +43,16 @@
               </a>
             </li>
             <li [routerLinkActive]='["link-active"]'>
+              <a [routerLink]='["/fetch-room"]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-th-list'></span> Fetch Room
+              </a>
+            </li>
+            <li [routerLinkActive]='["link-active"]'>
               <a [routerLink]='["/add-room"]' (click)='collapse()'>
                 <span class='glyphicon glyphicon-th-list'></span> Add Room
               </a>
             </li>
-            <li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/get-slot"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-th-list'></span> Get Slot
-              </a>
-            </li>
+
           </ul>
         </div>
     </div>

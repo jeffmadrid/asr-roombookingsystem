@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./fetch-room.component.css']
 })
 export class FetchRoomComponent implements OnInit {
-
+  title = "Room Venues";
   constructor() { }
 
   ngOnInit() {

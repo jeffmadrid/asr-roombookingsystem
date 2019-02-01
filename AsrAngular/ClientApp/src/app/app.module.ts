@@ -19,7 +19,6 @@ import { FetchEmployeeComponent } from "./components/fetch-employee/fetch-employ
 import { SlotService } from "./Services/slot.service";
 import { AddRoomComponent } from './Components/add-room/add-room.component';
 import { FetchSlotComponent } from './Components/fetch-slot/fetch-slot.component';
-import { GetSlotComponent } from './Components/get-slot/get-slot.component';
 import { FetchRoomComponent } from './Components/fetch-room/fetch-room.component';
 
 @NgModule({
@@ -33,7 +32,6 @@ import { FetchRoomComponent } from './Components/fetch-room/fetch-room.component
     FetchEmployeeComponent,
     AddRoomComponent,
     FetchSlotComponent,
-    GetSlotComponent,
     FetchRoomComponent
   ],
   imports: [
@@ -52,7 +50,7 @@ import { FetchRoomComponent } from './Components/fetch-room/fetch-room.component
       { path: "employee/edit/:id", component: AddEmployeeComponent },
       { path: "add-room", component: AddRoomComponent },
       { path: "fetch-slot", component: FetchSlotComponent },
-      { path: "get-slot", component: GetSlotComponent }
+      { path: "fetch-room", component: FetchRoomComponent }
 
     ])
   ],
