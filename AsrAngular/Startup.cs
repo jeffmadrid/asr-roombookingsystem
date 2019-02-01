@@ -1,3 +1,4 @@
+using AsrAngular.Data.DataManager;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -21,6 +22,8 @@ namespace AsrAngular
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddTransient<SlotManager>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
