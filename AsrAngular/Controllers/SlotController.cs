@@ -12,11 +12,11 @@ namespace AsrAngular.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SlotsController : Controller
+    public class SlotController : Controller
     {
         private SlotManager _slotManager;
 
-        public SlotsController(SlotManager slotManager)
+        public SlotController(SlotManager slotManager)
         {
             _slotManager = slotManager;
         }
