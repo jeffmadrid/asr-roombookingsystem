@@ -6,12 +6,6 @@
 
 <table class='table' *ngIf="slotList">
 
-  <form>
-    <input type="text" />
-    <input type="submit" />
-  </form>
-
-
   <thead>
     <tr>
       <th>Room ID</th>
@@ -27,9 +21,13 @@
       <td>{{ slot.staffId }}</td>
       <td>{{ slot.studentId }}</td>
       <td>
-        </td>
-      <td>
         <a [routerLink]="" (click)="delete(slot.roomId, slot.startTime)">Delete Slot</a>
+      </td>
+      <td>
+        <input type="text" placeholder="Change Student ID" ondblclick="updateBookedStudent(slot.roomId, slot.startTime, this)"/>
+      </td>
+      <td>
+        <a [routerLink]="" (click)="updateBookedStudent(slot.roomId, slot.startTime)">Change Student</a>
       </td>
     </tr>
   </tbody>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Http } from "@angular/http";
 import { Router } from "@angular/router";
 import { SlotService } from "../../Services/slot.service";
@@ -12,6 +12,7 @@ import { SlotService } from "../../Services/slot.service";
 export class FetchSlotComponent implements OnInit {
   title = "Fetch Slot";
   slotList: Slot[];
+  inputStudentId: string;
 
   constructor(public http: Http, private _router: Router, private _slotService: SlotService) {
     this.getSlots();
@@ -25,12 +26,16 @@ export class FetchSlotComponent implements OnInit {
     this._slotService.getSlotsOf(id).subscribe(data => this.slotList = data);
   }
 
+  updateBookedStudent(roomId, startTime, studentId) {
+    this._slotService.updateBookedStudent(roomId, startTime, studentId)
+      .subscribe(data => this.getSlots(), error => console.error(error));
+  }
+
   delete(roomId, startTime) {
     const ans = confirm("Do you want to delete this slot?");
     if (ans) {
-      this._slotService.deleteSlot(roomId, startTime).subscribe(
-        data => this.getSlots(),
-        error => console.error(error)); 
+      this._slotService.deleteSlot(roomId, startTime)
+        .subscribe(data => this.getSlots(), error => console.error(error)); 
 
     }
   }

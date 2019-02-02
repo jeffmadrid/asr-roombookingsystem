@@ -31,6 +31,9 @@ namespace AsrAngular.Controllers
         public IEnumerable<Slot> Get(string id) =>
             _manager.GetSlotsOf(id);
 
+        //https://sookocheff.com/post/api/when-to-use-http-put-and-http-post/
+        // so i guess create == Post; edit == Put
+
         // POST api/values
         [HttpPost]
         public void Post([FromBody]string value)
@@ -38,10 +41,10 @@ namespace AsrAngular.Controllers
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        [HttpPut()]
+        [Route("UpdateBookedStudent/{roomId}/{startTime}/{studentId}")]
+        public void UpdateBookedStudent(string roomId, string startTime, string studentId) =>
+            _manager.UpdateBookedStudent(roomId, startTime, studentId);
 
         // DELETE api/values/5
         [HttpDelete()]

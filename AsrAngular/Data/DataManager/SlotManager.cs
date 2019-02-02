@@ -66,11 +66,12 @@ namespace AsrAngular.Data.DataManager
 
 
         /*
-         * Edit the booked in student
+         * Edit the booked in student/ can also be used for cancel
          */
-        public int EditBookedStudent(Slot slot, string studentId)
+        public int UpdateBookedStudent(string roomId, string startTime, string studentId)
         {
-            var theSlot = _context.Slot.Find(slot);
+            var dateTime = DateTime.Parse(startTime);
+            var theSlot = _context.Slot.Find(roomId, dateTime);
             theSlot.StudentId = studentId;
             _context.Update(theSlot);
             _context.SaveChanges();
