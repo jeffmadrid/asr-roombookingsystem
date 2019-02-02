@@ -29,7 +29,7 @@ export class FetchSlotComponent implements OnInit {
     const ans = confirm("Do you want to delete this slot?");
     if (ans) {
       this._slotService.deleteSlot(roomId, startTime).subscribe(
-        data => this.getSlots,
+        data => this.getSlots(),
         error => console.error(error)); 
 
     }
