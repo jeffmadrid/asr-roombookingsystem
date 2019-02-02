@@ -57,6 +57,7 @@ namespace AsrAngular.Data.DataManager
             var room = _context.Room.Find(roomID);
             room.RoomId = newID;
             _context.Room.Update(room);
+            _context.SaveChanges();
 
             return 1;
         }
