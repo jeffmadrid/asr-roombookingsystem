@@ -1,7 +1,7 @@
-
+<h1>{{title}}</h1>
 <h3>Room</h3>
-
-<!--->form [formGroup]="roomForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+<hr />
+<form [formGroup]="roomForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
   <div class="form-group row">
     <label class=" control-label col-md-12">RoomId</label>
     <div class="col-md-4"> <input class="form-control" type="text" formControlName="roomId"> </div>
@@ -13,4 +13,4 @@
     <button type="submit" class="btn btn-default">Save</button>
     <button class="btn" (click)="cancel()">Cancel</button>
   </div>
-</!--form>
+</form>

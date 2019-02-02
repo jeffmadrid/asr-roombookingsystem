@@ -9,51 +9,51 @@ import { Http } from "@angular/http";
   styleUrls: ['./add-room.component.css']
 })
 export class AddRoomComponent implements OnInit {
-  //roomForm: FormGroup;
-  //title: string = "Add";
-  //roomId: string;
-  //errorMessage: any;
-  constructor(public http: Http, private _router: Router/*private _fb: FormBuilder, private _avRoute: ActivatedRoute, private _RoomService: RoomService,
-   private _router: Router*/)
+  roomForm: FormGroup;
+  title: string = "Add";
+  roomId: string;
+  errorMessage: any;
+  constructor(private _fb: FormBuilder, private _avRoute: ActivatedRoute, private _RoomService: RoomService,
+   private _router: Router)
   {
-    //if (this._avRoute.snapshot.params["id"]) {
-    //  this.roomId = this._avRoute.snapshot.params["id"];
-    //}
-    //this.roomForm = this._fb.group({
+    if (this._avRoute.snapshot.params["id"]) {
+      this.roomId = this._avRoute.snapshot.params["id"];
+    }
+    this.roomForm = this._fb.group({
       
-    //   roomId: ["", [Validators.required]]
+       roomId: ["", [Validators.required]]
      
-    //});
+    });
   }
 
   ngOnInit()
   {
-    //if (this.roomId != null) {
-    //  this.title = "Edit";
-    //  this._RoomService.getRoomById(this.roomId).subscribe(resp => this.roomForm.setValue(resp),
-    //    error => this.errorMessage = error);
-    //}
+    if (this.roomId != null) {
+      this.title = "Edit";
+      this._RoomService.getRoomById(this.roomId).subscribe(resp => this.roomForm.setValue(resp),
+        error => this.errorMessage = error);
+    }
   }
 
-  //save() {
-  //  if (!this.roomForm.valid) {
-  //    return;
-  //  }
-  //  if (this.title === "Add") {
-  //    this._RoomService.saveRoom(this.roomForm.value).subscribe((data) => {
-  //      this._router.navigate(["/fetch-room"]);
-  //    }, error => this.errorMessage = error);
-  //  }
-  //  else if (this.title === "Edit") {
-  //    this._RoomService.updateRoom(this.roomForm.value).subscribe((data) => {
-  //      this._router.navigate(["/fetch-room"]);
-  //    }, error => this.errorMessage = error);
-  //  }
-  //}
+  save() {
+    if (!this.roomForm.valid) {
+      return;
+    }
+    if (this.title === "Add") {
+      this._RoomService.saveRoom(this.roomForm.value).subscribe((data) => {
+        this._router.navigate(["/fetch-room"]);
+      }, error => this.errorMessage = error);
+    }
+    else if (this.title === "Edit") {
+      this._RoomService.updateRoom(this.roomForm.value).subscribe((data) => {
+        this._router.navigate(["/fetch-room"]);
+      }, error => this.errorMessage = error);
+    }
+  }
 
-  //cancel() {
-  //  this._router.navigate(["/fetch-room"]);
-  //}
+  cancel() {
+    this._router.navigate(["/fetch-room"]);
+  }
 
   //get roomId() {
   //  return this.roomForm.get("roomId");
