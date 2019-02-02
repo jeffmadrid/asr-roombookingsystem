@@ -52,9 +52,12 @@ namespace AsrAngular.Data.DataManager
         /*
          * Edit the roomIDs/rename? or maybe just delete the room?
          */
-        public int EditRoom(string roomID)
+        public int EditRoom(string roomID,string newID)
         {
-            _context.Room.Find(roomID);
+            var room = _context.Room.Find(roomID);
+            room.RoomId = newID;
+            _context.Room.Update(room);
+
             return 1;
         }
 
