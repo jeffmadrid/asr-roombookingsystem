@@ -13,7 +13,7 @@ export class AddRoomComponent implements OnInit {
   //title: string = "Add";
   //roomId: string;
   //errorMessage: any;
-  constructor(/*private _fb: FormBuilder, private _avRoute: ActivatedRoute, private _RoomService: RoomService,
+  constructor(public http: Http, private _router: Router/*private _fb: FormBuilder, private _avRoute: ActivatedRoute, private _RoomService: RoomService,
    private _router: Router*/)
   {
     //if (this._avRoute.snapshot.params["id"]) {
