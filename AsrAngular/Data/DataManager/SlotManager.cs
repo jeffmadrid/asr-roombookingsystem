@@ -32,9 +32,11 @@ namespace AsrAngular.Data.DataManager
         /*
          * Deletes the slot on the database
          */
-        public int DeleteSlot(Slot slot)
+        public int DeleteSlot(string roomId, string startTime)
         {
-            _context.Slot.Remove(_context.Slot.Find(slot));
+            var dateTime = DateTime.Parse(startTime);
+            var slot = _context.Slot.Find(roomId, dateTime);
+            _context.Slot.Remove(slot);
             _context.SaveChanges();
             return 1;
         }
@@ -42,9 +44,9 @@ namespace AsrAngular.Data.DataManager
         /*
          * Adds venues roomID {A,B,C,D...} to the system
          */
-        public int AddRoom(string roomID)
+        public int AddRoom(string roomId)
         {
-            _context.Room.Add(new Room { RoomId = roomID });
+            _context.Room.Add(new Room { RoomId = roomId });
             _context.SaveChanges();
             return 1;
         }
@@ -52,10 +54,10 @@ namespace AsrAngular.Data.DataManager
         /*
          * Edit the roomIDs/rename? or maybe just delete the room?
          */
-        public int EditRoom(string roomID,string newID)
+        public int EditRoom(string roomId,string newId)
         {
-            var room = _context.Room.Find(roomID);
-            room.RoomId = newID;
+            var room = _context.Room.Find(roomId);
+            room.RoomId = newId;
             _context.Room.Update(room);
             _context.SaveChanges();
 

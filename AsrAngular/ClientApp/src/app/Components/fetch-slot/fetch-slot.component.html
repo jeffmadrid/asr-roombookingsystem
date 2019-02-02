@@ -5,6 +5,13 @@
 <p *ngIf="!slotList"><em>Loading...</em></p>
 
 <table class='table' *ngIf="slotList">
+
+  <form>
+    <input type="text" />
+    <input type="submit" />
+  </form>
+
+
   <thead>
     <tr>
       <th>Room ID</th>
@@ -14,13 +21,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let sl of slotList">
-      <td>{{ sl.roomId }}</td>
-      <td>{{ sl.startTime }}</td>
-      <td>{{ sl.staffId }}</td>
-      <td>{{ sl.studentId }}</td>
+    <tr *ngFor="let slot of slotList">
+      <td>{{ slot.roomId }}</td>
+      <td>{{ slot.startTime }}</td>
+      <td>{{ slot.staffId }}</td>
+      <td>{{ slot.studentId }}</td>
       <td>
-
+        </td>
+      <td>
+        <a [routerLink]="" (click)="delete(slot.roomId, slot.startTime)">Delete Slot</a>
+      </td>
     </tr>
   </tbody>
 </table>

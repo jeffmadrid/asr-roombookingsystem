@@ -18,6 +18,12 @@ export class SlotService {
       .catch(this.errorHandler);
   }
 
+  getSlotsOf(id) {
+    return this._http.get(this.myAppUrl + "api/Slot/Index/" + id).map((response: Response) => response.json())
+      .catch(this.errorHandler);
+
+  }
+
   //getBookedSlot(id: string) {
   //  return this._http.get(this.myAppUrl + "api/Slot/GetBookedSlot").map(res => res.json()).catch(this.errorHandler);
   //}
@@ -27,10 +33,11 @@ export class SlotService {
   //    .catch(this.errorHandler);
   //}
 
-  //deleteSlot(id) {
-  //  return this._http.delete(this.myAppUrl + "api/Slot/DeleteSlot" + id).map((response: Response) => response.json())
-  //    .catch(this.errorHandler);
-  //}
+  deleteSlot(roomId, startTime) {
+    return this._http.delete(this.myAppUrl + "api/Slot/DeleteSlot/" + roomId + "/" + startTime)
+      .map((response: Response) => response.json())
+      .catch(this.errorHandler);
+  }
 
   errorHandler(error: Response) {
     console.log(error);
