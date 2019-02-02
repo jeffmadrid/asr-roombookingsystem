@@ -1,3 +1,16 @@
-<p>
-  add-room works!
-</p>
+
+<h3>Room</h3>
+
+<!--->form [formGroup]="roomForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+  <div class="form-group row">
+    <label class=" control-label col-md-12">RoomId</label>
+    <div class="col-md-4"> <input class="form-control" type="text" formControlName="roomId"> </div>
+    <span class="text-danger" *ngIf="name.invalid && formDir.submitted">
+      Room is required.
+    </span>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-default">Save</button>
+    <button class="btn" (click)="cancel()">Cancel</button>
+  </div>
+</!--form>

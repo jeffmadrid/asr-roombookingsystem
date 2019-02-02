@@ -18,6 +18,23 @@ export class RoomService {
       .catch(this.errorHandler);
   }
 
+  //getRoomById(id: string) {
+  //  return this._http.get(this.myAppUrl + "api/Room/Details/" + id).map((response: Response) => response.json())
+  //    .catch(this.errorHandler);
+  //}
+
+  //saveRoom(room) {
+  //  {
+  //    return this._http.post(this.myAppUrl + "api/Room/Create", room).map((response: Response) => response.json())
+  //      .catch(this.errorHandler);
+  //  }
+
+  //}
+
+  //updateRoom(room) {
+  //  return this._http.put(this.myAppUrl + "api/Room/Edit", room).map((response: Response) => response.json())
+  //    .catch(this.errorHandler);
+  //}
   //getBookedSlot(id: string) {
   //  return this._http.get(this.myAppUrl + "api/Slot/GetBookedSlot").map(res => res.json()).catch(this.errorHandler);
   //}

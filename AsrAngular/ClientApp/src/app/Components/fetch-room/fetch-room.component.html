@@ -1,7 +1,9 @@
 <h1>{{title}}</h1>
 
 <p *ngIf="!roomList"><em>Loading...</em></p>
-
+<p>
+  <a [routerLink]="['/add-employee']">Add New</a>
+</p>
 <table class='table' *ngIf="roomList">
   <thead>
     <tr>
@@ -11,6 +13,11 @@
   <tbody>
     <tr *ngFor="let sl of roomList">
       <td>{{ sl.roomId }}</td>
+
+      <td>
+        <a [routerLink]="['/room/edit/', sl.roomId]">Edit</a> 
+        
+      </td>
     </tr>
   </tbody>
 </table>

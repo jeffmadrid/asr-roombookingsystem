@@ -27,26 +27,28 @@ namespace AsrAngular.Controllers
 
 
         // GET: api/Room/5
+        //get room by id
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [Route("Details")]
+        public Room Get(string id)
         {
-            return "value";
+            return _manager.GetRoomData(id);
         }
 
         // POST: api/Room
         [HttpPost]
-        //[Route("Create")]
-        public int Post([FromBody] string value)
+        [Route("Create")]
+        public int Post([FromBody] Room room)
         {
-           return _manager.AddRoom(value);
+           return _manager.AddRoom(room);
         }
 
         // PUT: api/Room/5
-        [HttpPut("{id}")]
-        //[Route("Edit")]
-        public int Put(string id, [FromBody] string value)
+        [HttpPut/*("{id}")*/]
+        [Route("Edit")]
+        public int Put(/*string id,*/ [FromBody] Room room)
         {
-            return _manager.EditRoom(id,value);
+            return _manager.UpdateRoom(room);
         }
 
         // DELETE: api/ApiWithActions/5

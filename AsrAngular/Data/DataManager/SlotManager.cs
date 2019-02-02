@@ -42,9 +42,9 @@ namespace AsrAngular.Data.DataManager
         /*
          * Adds venues roomID {A,B,C,D...} to the system
          */
-        public int AddRoom(string roomID)
+        public int AddRoom(Room room)
         {
-            _context.Room.Add(new Room { RoomId = roomID });
+            _context.Room.Add(room);
             _context.SaveChanges();
             return 1;
         }
@@ -52,16 +52,18 @@ namespace AsrAngular.Data.DataManager
         /*
          * Edit the roomIDs/rename? or maybe just delete the room?
          */
-        public int EditRoom(string roomID,string newID)
+        public int UpdateRoom(Room room)
         {
-            var room = _context.Room.Find(roomID);
-            room.RoomId = newID;
-            _context.Room.Update(room);
+            _context.Entry(room).State = EntityState.Modified;
             _context.SaveChanges();
-
             return 1;
         }
 
+        public Room GetRoomData(string id)
+        {
+            var room = _context.Room.Find(id);
+            return room;
+        }
 
         /*
          * Edit the booked in student
