@@ -27,7 +27,8 @@ export class FetchRoomComponent implements OnInit {
     const ans = confirm("Do you want to delete this room?");
     if (ans) {
       this._roomService.deleteRoom(roomId)
-        .subscribe(data => this.getRooms(), error => console.error(error));
+        .subscribe(data => this.getRooms(),
+          error => console.error(error));
     }
   }
 }
