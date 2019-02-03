@@ -23,19 +23,10 @@ export class RoomService {
       .catch(this.errorHandler);
   }
 
-  //getBookedSlot(id: string) {
-  //  return this._http.get(this.myAppUrl + "api/Slot/GetBookedSlot").map(res => res.json()).catch(this.errorHandler);
-  //}
-
-  //updateStudentId(slot) {
-  //  return this._http.put(this.myAppUrl + "api/Slot/UpdateStudent", slot).map((response: Response) => response.json())
-  //    .catch(this.errorHandler);
-  //}
-
-  //deleteSlot(id) {
-  //  return this._http.delete(this.myAppUrl + "api/Slot/DeleteSlot" + id).map((response: Response) => response.json())
-  //    .catch(this.errorHandler);
-  //}
+  deleteRoom(id) {
+    return this._http.delete(this.myAppUrl + "api/Room/DeleteRoom/" + id).map((response: Response) => response.json())
+      .catch(this.errorHandler);
+  }
 
   errorHandler(error: Response) {
     console.log(error);

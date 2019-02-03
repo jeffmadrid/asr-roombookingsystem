@@ -29,7 +29,7 @@ namespace AsrAngular.Data.DataManager
             id.StartsWith('e') ? _context.Slot.Where(x => x.StaffId == id) :
                 _context.Slot.Where(x => x.StudentId == id);
 
-        public Slot GetStudentId(string roomId, string startTime)
+        public Slot GetSlot(string roomId, string startTime)
         {
             var dateTime = DateTime.Parse(startTime);
             //var staffId = _context.Slot.Find(roomId, dateTime).StudentId;
@@ -66,13 +66,11 @@ namespace AsrAngular.Data.DataManager
         /*
          * Edit the roomIDs/rename? or maybe just delete the room?
          */
-        public int EditRoom(string roomId,string newId)
+        public int DeleteRoom(string roomId)
         {
             var room = _context.Room.Find(roomId);
-            room.RoomId = newId;
-            _context.Room.Update(room);
+            _context.Room.Remove(room);
             _context.SaveChanges();
-
             return 1;
         }
 
@@ -81,15 +79,23 @@ namespace AsrAngular.Data.DataManager
          * Edit the booked in student/ can also be used for cancel
          */
         //public int UpdateBookedStudent(string roomId, string startTime, string studentId)
-        public int UpdateBookedStudent(Slot slot)
+        public int UpdateBooking(Slot slot)
         {
-            //var dateTime = DateTime.Parse(startTime);
-            //var theSlot = _context.Slot.Find(roomId, dateTime);
-            //theSlot.StudentId = studentId;
-            //_context.Update(theSlot);
-            _context.Update(slot);
-            _context.SaveChanges();
-            return 1;
+            if (_context.Student.Any(x => x.StudentId == slot.StudentId))
+            {
+                _context.Update(slot);
+                _context.SaveChanges();
+                return 1;
+            }
+            else if (string.IsNullOrEmpty(slot.StudentId))
+            {
+                _context.Slot.Remove(_context.Slot.Find(slot.RoomId, slot.StartTime));
+                slot.StudentId = null;
+                _context.Slot.Add(slot);
+                _context.SaveChanges();
+                return 1;
+            }
+            return 0;
         }
 
         /*

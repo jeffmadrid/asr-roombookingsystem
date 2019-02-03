@@ -31,7 +31,6 @@ export class FetchSlotComponent implements OnInit {
     if (ans) {
       this._slotService.deleteSlot(roomId, startTime)
         .subscribe(data => this.getSlots(), error => console.error(error)); 
-
     }
   }
 

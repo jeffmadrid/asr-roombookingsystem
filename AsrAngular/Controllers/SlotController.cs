@@ -28,7 +28,7 @@ namespace AsrAngular.Controllers
         [HttpGet()]
         [Route("{roomId}/{startTime}")]
         public Slot Get(string roomId, string startTime) =>
-            _manager.GetStudentId(roomId, startTime);
+            _manager.GetSlot(roomId, startTime);
 
         //https://sookocheff.com/post/api/when-to-use-http-put-and-http-post/
         // so i guess create == Post; edit == Put
@@ -39,9 +39,9 @@ namespace AsrAngular.Controllers
         }
 
         [HttpPut()]
-        [Route("Edit")]
+        [Route("UpdateBooking")]
         public void Edit([FromBody] Slot slot) =>
-            _manager.UpdateBookedStudent(slot);
+            _manager.UpdateBooking(slot);
 
         [HttpDelete()]
         [Route("DeleteSlot/{roomId}/{startTime}")]

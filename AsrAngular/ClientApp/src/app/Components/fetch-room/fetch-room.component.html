@@ -6,11 +6,15 @@
   <thead>
     <tr>
       <th>Room ID</th>
+      <th>Delete Room</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let sl of roomList">
-      <td>{{ sl.roomId }}</td>
+    <tr *ngFor="let room of roomList">
+      <td>{{ room.roomId }}</td>
+      <td>
+        <a [routerLink]="" (click)="delete(room.roomId)">Delete this Room</a>
+      </td>
     </tr>
   </tbody>
 </table>

@@ -28,12 +28,8 @@ export class SlotService {
       .catch(this.errorHandler);
   }
 
-  //getBookedSlot(id: string) {
-  //  return this._http.get(this.myAppUrl + "api/Slot/GetBookedSlot").map(res => res.json()).catch(this.errorHandler);
-  //}
-
-  updateBookedStudent(roomId, startTime, studentId) {
-    return this._http.put(this.myAppUrl + "api/Slot/UpdateStudent/" + studentId, roomId, startTime).map((response: Response) => response.json())
+  updateBooking(slot) {
+    return this._http.put(this.myAppUrl + "api/Slot/UpdateBooking", slot).map((response: Response) => response.json())
       .catch(this.errorHandler);
   }
 

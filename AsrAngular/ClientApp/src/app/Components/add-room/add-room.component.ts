@@ -24,8 +24,6 @@ export class AddRoomComponent implements OnInit {
 
   save() {
     //var inputRoomId = (<HTMLInputElement>document.getElementById("roomId")).value;
-    //alert(inputRoomId);
-
     this._roomService.saveRoom(this.roomForm.value).subscribe((data) => {
       this._router.navigate(["/fetch-room"])
         },

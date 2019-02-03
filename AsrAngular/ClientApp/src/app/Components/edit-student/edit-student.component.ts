@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 export class EditStudentComponent implements OnInit {
   title = "Edit to Book or Cancel Booking for Students";
   slotForm: FormGroup;
+  errorMessage: any;
 
   roomId: string;
   startTime: string;
@@ -26,7 +27,6 @@ export class EditStudentComponent implements OnInit {
       this.roomId = this._avRoute.snapshot.params["roomId"];
       this.startTime = this._avRoute.snapshot.params["startTime"];
       this.staffId = _avRoute.snapshot.params["staffId"];
-      //alert(this.startTime);
     }
 
     this.slotForm = this._fb.group({
@@ -38,17 +38,16 @@ export class EditStudentComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this._slotService.getStudentId(this.roomId, this.startTime).subscri
-
-
+    this._slotService.getStudentId(this.roomId, this.startTime).subscribe(resp => this.slotForm.setValue(resp),
+      error => this.errorMessage = error);
   }
 
   save() {
+    this._slotService.updateBooking(this.slotForm.value).subscribe((data) =>
+    {
+      this._router.navigate(["/fetch-slot"]);
+    }, error => this.errorMessage = error);
 
-
-
-    //this._slotService.updateBookedStudent(roomId, startTime, studentId)
-    //  .subscribe(data => this.getSlots(), error => console.error(error));
   }
 
   cancel() {
