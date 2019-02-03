@@ -21,32 +21,28 @@ namespace AsrAngular.Controllers
             _manager = slotManager;
         }
 
-        // GET: api/values
         [HttpGet]
         [Route("Index")]
         public IEnumerable<Slot> Get() => _manager.GetAllSlots();
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public IEnumerable<Slot> Get(string id) =>
-            _manager.GetSlotsOf(id);
+        [HttpGet()]
+        [Route("{roomId}/{startTime}")]
+        public Slot Get(string roomId, string startTime) =>
+            _manager.GetStudentId(roomId, startTime);
 
         //https://sookocheff.com/post/api/when-to-use-http-put-and-http-post/
         // so i guess create == Post; edit == Put
 
-        // POST api/values
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT api/values/5
         [HttpPut()]
-        [Route("UpdateBookedStudent/{roomId}/{startTime}/{studentId}")]
-        public void UpdateBookedStudent(string roomId, string startTime, string studentId) =>
-            _manager.UpdateBookedStudent(roomId, startTime, studentId);
+        [Route("Edit")]
+        public void Edit([FromBody] Slot slot) =>
+            _manager.UpdateBookedStudent(slot);
 
-        // DELETE api/values/5
         [HttpDelete()]
         [Route("DeleteSlot/{roomId}/{startTime}")]
         public int DeleteSlot(string roomId, string startTime) =>

@@ -23,6 +23,11 @@
               </a>
             </li>
             <li [routerLinkActive]='["link-active"]'>
+              <a [routerLink]='["/edit-student"]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-th-list'></span> Edit Student
+              </a>
+            </li>
+            <li [routerLinkActive]='["link-active"]'>
               <a [routerLink]='["/fetch-room"]' (click)='collapse()'>
                 <span class='glyphicon glyphicon-th-list'></span> Fetch Room
               </a>

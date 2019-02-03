@@ -21,7 +21,11 @@ export class SlotService {
   getSlotsOf(id) {
     return this._http.get(this.myAppUrl + "api/Slot/Index/" + id).map((response: Response) => response.json())
       .catch(this.errorHandler);
+  }
 
+  getStudentId(roomId, startTime) {
+    return this._http.get(this.myAppUrl + "api/Slot/" + roomId + "/" + startTime).map((response: Response) => response.json())
+      .catch(this.errorHandler);
   }
 
   //getBookedSlot(id: string) {

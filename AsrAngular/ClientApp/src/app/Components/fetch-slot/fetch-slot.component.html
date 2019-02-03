@@ -1,7 +1,7 @@
 <h1>{{title}}</h1>
 
 
-<p>This component demonstrates fetching Slot data from the server.</p>
+<p>This component fetching Slot data from server and deleting as desired.</p>
 <p *ngIf="!slotList"><em>Loading...</em></p>
 
 <table class='table' *ngIf="slotList">
@@ -21,13 +21,10 @@
       <td>{{ slot.staffId }}</td>
       <td>{{ slot.studentId }}</td>
       <td>
+        <a [routerLink]="['/slot/edit/', slot.roomId, slot.startTime, slot.staffId]">Edit Student</a>
+      </td>
+      <td>
         <a [routerLink]="" (click)="delete(slot.roomId, slot.startTime)">Delete Slot</a>
-      </td>
-      <td>
-        <input type="text" placeholder="Change Student ID" ondblclick="updateBookedStudent(slot.roomId, slot.startTime, this)"/>
-      </td>
-      <td>
-        <a [routerLink]="" (click)="updateBookedStudent(slot.roomId, slot.startTime)">Change Student</a>
       </td>
     </tr>
   </tbody>

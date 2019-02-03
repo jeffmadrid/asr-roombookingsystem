@@ -29,6 +29,15 @@ namespace AsrAngular.Data.DataManager
             id.StartsWith('e') ? _context.Slot.Where(x => x.StaffId == id) :
                 _context.Slot.Where(x => x.StudentId == id);
 
+        public Slot GetStudentId(string roomId, string startTime)
+        {
+            var dateTime = DateTime.Parse(startTime);
+            //var staffId = _context.Slot.Find(roomId, dateTime).StudentId;
+            //return string.IsNullOrEmpty(staffId) ? "" : staffId;
+            return _context.Slot.Find(roomId, dateTime);
+
+        }
+
         /*
          * Deletes the slot on the database
          */
@@ -71,12 +80,14 @@ namespace AsrAngular.Data.DataManager
         /*
          * Edit the booked in student/ can also be used for cancel
          */
-        public int UpdateBookedStudent(string roomId, string startTime, string studentId)
+        //public int UpdateBookedStudent(string roomId, string startTime, string studentId)
+        public int UpdateBookedStudent(Slot slot)
         {
-            var dateTime = DateTime.Parse(startTime);
-            var theSlot = _context.Slot.Find(roomId, dateTime);
-            theSlot.StudentId = studentId;
-            _context.Update(theSlot);
+            //var dateTime = DateTime.Parse(startTime);
+            //var theSlot = _context.Slot.Find(roomId, dateTime);
+            //theSlot.StudentId = studentId;
+            //_context.Update(theSlot);
+            _context.Update(slot);
             _context.SaveChanges();
             return 1;
         }

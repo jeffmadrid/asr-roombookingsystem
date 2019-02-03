@@ -10,7 +10,7 @@ import { SlotService } from "../../Services/slot.service";
 })
 
 export class FetchSlotComponent implements OnInit {
-  title = "Fetch Slot";
+  title = "Fetch Slot and Delete Slot";
   slotList: Slot[];
   inputStudentId: string;
 
@@ -24,11 +24,6 @@ export class FetchSlotComponent implements OnInit {
 
   getSlotsOf(id) {
     this._slotService.getSlotsOf(id).subscribe(data => this.slotList = data);
-  }
-
-  updateBookedStudent(roomId, startTime, studentId) {
-    this._slotService.updateBookedStudent(roomId, startTime, studentId)
-      .subscribe(data => this.getSlots(), error => console.error(error));
   }
 
   delete(roomId, startTime) {
@@ -45,7 +40,7 @@ export class FetchSlotComponent implements OnInit {
 
 }
 
-interface Slot {
+export interface Slot {
   roomId: string;
   startTime: string;
   staffId: string;
