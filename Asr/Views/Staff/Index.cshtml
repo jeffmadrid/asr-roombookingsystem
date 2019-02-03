@@ -6,13 +6,13 @@
 
 <h1>Created Slots</h1>
 
-<div class="own-float-right" >
+<div >
     <a asp-action="Create">Create New Slot</a>
 </div>
 @* This link sends the email address of the current user using url/get method to the controller*@
-<p>
+<div class="own-float-right">
     <a asp-action="Index" asp-route-staffid="@User.Identity.Name.Substring(0,6)">Show only my slot</a>
-</p>
+</div>
 
 <table class="table">
     <thead>

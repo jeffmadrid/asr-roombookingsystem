@@ -1,12 +1,16 @@
-Link for ER Diagram:
-https://www.lucidchart.com/invitations/accept/570f4773-2886-4f55-b17c-48768d7dfef5
-
-S3697158
-
 Advantage of social media login:
 - New users do not need to create a 'local account' for the website and can use their preferred social media login (google/facebook/twitter)
 - Organisations don't need to store the data/password of the new user, meaning they are not liable if the accounts registered through external social media login gets compromised
 - Ease of use for new users
+
+Advantage of WebAPI:
+- Lets the outside world interact and see your application content/harmful without interfering with the application you created yourself. They see only limited access and you can restrict them from doing anything harmful to your data.
+- You only make methods for what you want others to do or see.
+
+
+
+
+
 
 
 dotnet ef dbcontext scaffold "Server=wdt2019.australiasoutheast.cloudapp.azure.com;Database=s3707189;uid=s3707189;pwd=abc123;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -o Models
