@@ -73,21 +73,21 @@ namespace Asr.Data
             await CreateStudentAsync(context, "s1234567", "Kevin");
             await CreateStudentAsync(context, "s4567890", "Olivier");
 
-            await context.Slot.AddRangeAsync(
-                new Slot
-                {
-                    RoomID = "A",
-                    StartTime = new DateTime(2019, 3, 1, 9, 0, 0),
-                    StaffID = "e12345"
-                },
-                new Slot
-                {
-                    RoomID = "B",
-                    StartTime = new DateTime(2019, 3, 1, 9, 0, 0),
-                    StaffID = "e56789",
-                    StudentID = "s1234567"
-                }
-            );
+            //await context.Slot.AddRangeAsync(
+            //    new Slot
+            //    {
+            //        RoomID = "A",
+            //        StartTime = new DateTime(2019, 3, 1, 9, 0, 0),
+            //        StaffID = "e12345"
+            //    },
+            //    new Slot
+            //    {
+            //        RoomID = "B",
+            //        StartTime = new DateTime(2019, 3, 1, 9, 0, 0),
+            //        StaffID = "e56789",
+            //        StudentID = "s1234567"
+            //    }
+            //);
 
             await context.SaveChangesAsync();
 
