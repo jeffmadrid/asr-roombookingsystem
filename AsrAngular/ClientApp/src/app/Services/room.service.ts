@@ -18,6 +18,12 @@ export class RoomService {
       .catch(this.errorHandler);
   }
 
+  saveRoom(roomId) {
+    {
+      return this._http.post(this.myAppUrl + "api/Room/Create", roomId).map((response: Response) => response.json())
+        .catch(this.errorHandler);
+    }
+
   //getBookedSlot(id: string) {
   //  return this._http.get(this.myAppUrl + "api/Slot/GetBookedSlot").map(res => res.json()).catch(this.errorHandler);
   //}

@@ -35,10 +35,10 @@ namespace AsrAngular.Controllers
 
         // POST: api/Room
         [HttpPost]
-        //[Route("Create")]
-        public int Post([FromBody] string value)
+        [Route("CreateRoom")]
+        public int Post([FromBody] string roomId)
         {
-           return _manager.AddRoom(value);
+           return _manager.AddRoom(roomId);
         }
 
         // PUT: api/Room/5
