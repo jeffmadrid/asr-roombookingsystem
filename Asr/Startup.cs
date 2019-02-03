@@ -55,11 +55,11 @@ namespace Asr
                 googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
             });
 
-            services.AddAuthentication().AddFacebook(facebookOptions =>
-            {
-                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
-                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-            });
+            //services.AddAuthentication().AddFacebook(facebookOptions =>
+            //{
+            //    facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+            //    facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+            //});
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -80,7 +80,7 @@ namespace Asr
             }
 
             //Uncomment this for handling errors or app release stage
-            //app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
+            app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
 
             //Added for external google log in
             app.UseRewriter(new RewriteOptions().AddRedirectToHttps());
