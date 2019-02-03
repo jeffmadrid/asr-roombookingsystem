@@ -44,9 +44,12 @@ namespace AsrAngular.Data.DataManager
         /*
          * Adds venues roomID {A,B,C,D...} to the system
          */
-        public int AddRoom(string roomId)
+        public int AddRoom(Room room)
         {
-            _context.Room.Add(new Room { RoomId = roomId });
+            if (_context.Room.Any(x => x == room))
+                return 0;
+            _context.Room.Add(room);
+            //_context.Room.Add(new Room { RoomId = roomId });
             _context.SaveChanges();
             return 1;
         }

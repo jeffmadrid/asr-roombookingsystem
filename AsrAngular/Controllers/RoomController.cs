@@ -36,9 +36,9 @@ namespace AsrAngular.Controllers
         // POST: api/Room
         [HttpPost]
         [Route("CreateRoom")]
-        public int Post([FromBody] string roomId)
+        public int Post([FromBody] Room room)
         {
-           return _manager.AddRoom(roomId);
+           return _manager.AddRoom(room);
         }
 
         // PUT: api/Room/5

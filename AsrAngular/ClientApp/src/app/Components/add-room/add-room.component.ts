@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { Http } from "@angular/http";
+import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { FormGroup } from "@angular/forms";
+import { RoomService } from "../../Services/room.service";
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-add-room',
@@ -9,25 +9,31 @@ import { FormGroup } from "@angular/forms";
   styleUrls: ['./add-room.component.css']
 })
 export class AddRoomComponent implements OnInit {
-  title = "Add Room"
-  roomForm = FormGroup;
+  title = "Add Room";
+  errorMessage: any;
+  roomForm: FormGroup;
 
-  constructor(public http: Http, private _router: Router) {
-
+  constructor(private _fb: FormBuilder, private _router: Router, private _roomService: RoomService) {
+    this.roomForm = this._fb.group({
+      roomId: new FormControl('')
+    });
   }
 
   ngOnInit() {
   }
 
   save() {
+    //var inputRoomId = (<HTMLInputElement>document.getElementById("roomId")).value;
+    //alert(inputRoomId);
 
+    this._roomService.saveRoom(this.roomForm.value).subscribe((data) => {
+      this._router.navigate(["/fetch-room"])
+        },
+      error => this.errorMessage = error);
   }
 
   cancel() {
     this._router.navigate(["/fetch-room"]);
   }
-}
 
-interface Room {
-  roomId: string;
 }
