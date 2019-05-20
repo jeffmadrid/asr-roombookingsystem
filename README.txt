@@ -13,7 +13,7 @@ Advantage of WebAPI:
 
 
 
-dotnet ef dbcontext scaffold "Server=wdt2019.australiasoutheast.cloudapp.azure.com;Database=s3707189;uid=s3707189;pwd=abc123;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -o Models
+dotnet ef dbcontext scaffold "Server=...;Database=...;uid=...;pwd=...;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -o Models
 
 https://stackoverflow.com/questions/46174863/error-more-than-one-module-matches-use-skip-import-option-to-skip-importing-th
 Component generation: (Angular)
